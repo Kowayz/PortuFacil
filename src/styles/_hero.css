@@ -1,0 +1,369 @@
+/* PortuFácil — Hero Section */
+
+/* ============================
+   HERO SECTION
+   ============================ */
+.hero {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 50%, #3A6A9C 100%);
+  z-index: 0;
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.06;
+  background-image:
+    linear-gradient(45deg, var(--white) 1px, transparent 1px),
+    linear-gradient(-45deg, var(--white) 1px, transparent 1px),
+    linear-gradient(45deg, transparent 40%, var(--white) 40%, var(--white) 60%, transparent 60%),
+    linear-gradient(-45deg, transparent 40%, var(--white) 40%, var(--white) 60%, transparent 60%);
+  background-size: 60px 60px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+
+.hero-flags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.hero-flag {
+  width: 48px;
+  height: 36px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  animation: float 3s ease-in-out infinite;
+}
+.hero-flag:nth-child(2) { animation-delay: 0.5s; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.9);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--ochre-light);
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 600px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--ochre);
+  color: var(--blue);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all var(--transition);
+  box-shadow: 0 4px 20px rgba(232,168,56,0.4);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--ochre-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(232,168,56,0.5);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: rgba(255,255,255,0.15);
+  color: var(--white);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: 2px solid rgba(255,255,255,0.3);
+  transition: all var(--transition);
+  backdrop-filter: blur(4px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-num {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ochre-light);
+}
+
+.hero-stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Word of Day in hero */
+.hero-word-card {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  max-width: 280px;
+  animation: cardFloat 4s ease-in-out infinite;
+}
+
+.word-of-day-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ochre-light);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.word-of-day-word {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.word-of-day-trans {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.word-of-day-example {
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 10px;
+}
+
+/* ============================
+   WHY CARDS (hero page)
+   ============================ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.why-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+  border: 1px solid rgba(26,58,92,0.05);
+  text-align: center;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.why-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.why-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: var(--blue);
+}
+
+[data-theme="dark"] .why-card h3 { color: var(--ochre-light); }
+
+.why-card p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+.why-card-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--blue);
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ============================
+   HOW IT WORKS
+   ============================ */
+.how-timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  padding: 20px 0;
+}
+
+.how-timeline::before {
+  content: '';
+  position: absolute;
+  top: 60px; /* 20px timeline padding-top + 40px (center of 80px icon) */
+  left: calc(100% / 6);
+  right: calc(100% / 6);
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--ochre), var(--green));
+  border-radius: 3px;
+}
+
+.how-step {
+  flex: 1;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.how-step-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 20px;
+  border: 3px solid var(--cream);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 1;
+}
+
+.how-step:nth-child(1) .how-step-icon { background: linear-gradient(135deg, var(--blue), var(--blue-light)); }
+.how-step:nth-child(2) .how-step-icon { background: linear-gradient(135deg, var(--ochre), var(--ochre-light)); }
+.how-step:nth-child(3) .how-step-icon { background: linear-gradient(135deg, var(--green), var(--green-light)); }
+
+.how-step h3 {
+  font-size: 1.05rem;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .how-step h3 { color: var(--ochre-light); }
+
+.how-step p {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+/* ============================
+   QUOTES SECTION
+   ============================ */
+.quote-section {
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  color: var(--white);
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-section::before {
+  content: '"';
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  font-family: 'Playfair Display', serif;
+  font-size: 20rem;
+  opacity: 0.05;
+  color: var(--white);
+  line-height: 1;
+}
+
+.quote-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.95);
+}
+
+.quote-author {
+  font-size: 0.9rem;
+  color: var(--ochre-light);
+  font-weight: 700;
+}

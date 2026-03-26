@@ -1,0 +1,204 @@
+/* PortuFácil — SRS (Spaced Repetition System) Styles */
+
+/* ============================
+   SRS WIDGET
+   ============================ */
+.srs-widget {
+  margin: 48px auto 16px;
+  max-width: 900px;
+  padding: 0 20px;
+}
+.srs-widget-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, var(--blue), #2660a4);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 18px 24px;
+  flex-wrap: wrap;
+}
+.srs-widget-inner.srs-all-done {
+  background: linear-gradient(135deg, var(--green), #3a8f5a);
+}
+.srs-widget-icon { font-size: 2rem; flex-shrink: 0; }
+.srs-widget-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 160px;
+}
+.srs-widget-text strong { font-size: 1rem; font-weight: 700; }
+.srs-widget-text span { font-size: 0.82rem; opacity: 0.85; }
+.srs-widget-btn {
+  padding: 10px 22px;
+  background: white;
+  color: var(--blue);
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+.srs-widget-btn:hover { background: #f0f4ff; transform: scale(1.03); }
+
+/* ============================
+   SRS & ERROR BADGES ON FLIP CARDS
+   ============================ */
+.srs-due-badge, .error-badge {
+  position: absolute;
+  top: 8px;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.srs-due-badge { left: 40px; }
+.error-badge { right: 40px; }
+
+/* ============================
+   CLOZE EXERCISE
+   ============================ */
+.cloze-sentence {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.8;
+  margin: 16px 0;
+  text-align: center;
+}
+.cloze-input {
+  display: inline-block;
+  border: 2px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 4px 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  width: 140px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+  vertical-align: middle;
+}
+.cloze-input:focus { border-color: var(--ochre); }
+.cloze-input.correct { border-color: var(--green); background: var(--green-pale); }
+.cloze-input.wrong   { border-color: var(--red);   background: var(--red-pale); }
+.cloze-hint {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+/* ============================
+   MATCH EXERCISE
+   ============================ */
+.match-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.match-col { display: flex; flex-direction: column; gap: 8px; }
+.match-btn {
+  padding: 10px 14px;
+  border: 2px solid var(--cream-dark);
+  border-radius: var(--radius);
+  background: var(--white);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.15s;
+  color: var(--text-dark);
+}
+.match-btn:hover:not(:disabled) { border-color: var(--blue); background: var(--blue-pale); }
+.match-btn.selected { border-color: var(--blue); background: var(--blue-pale); color: var(--blue); box-shadow: 0 0 0 3px rgba(26,58,92,0.15); }
+.match-btn.match-correct { border-color: var(--green); background: var(--green-pale); color: var(--green); cursor: default; }
+.match-btn.match-wrong { border-color: var(--red); background: var(--red-pale); animation: shake 0.3s; }
+
+/* ============================
+   DIALOGUE EXERCISE
+   ============================ */
+.dialogue-context {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-style: italic;
+  background: var(--cream);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+}
+.dialogue-bubble {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 12px 0;
+}
+.dialogue-bubble.npc .dialogue-text {
+  background: var(--blue);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 4px 18px 18px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  max-width: 80%;
+}
+.dialogue-speaker { font-size: 1.5rem; margin-top: 4px; flex-shrink: 0; }
+
+/* ============================
+   DICTATION BUTTON
+   ============================ */
+.btn-dictation-play {
+  padding: 12px 28px;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-dictation-play:hover { background: var(--blue-light); transform: scale(1.04); }
+
+/* ============================
+   WEAK SPOTS SECTION
+   ============================ */
+.weak-spot-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--white);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--red);
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: background 0.15s;
+}
+.weak-spot-item:hover { background: var(--red-pale); }
+.weak-spot-word { font-weight: 600; color: var(--text-dark); font-size: 0.9rem; }
+.weak-spot-count { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--red); font-weight: 700; }
+.weak-spot-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+/* ============================
+   LESSON SCORES SECTION
+   ============================ */
+.lesson-score-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cream-dark);
+}
+.lesson-score-icon { font-size: 1.4rem; flex-shrink: 0; }
+.lesson-score-info { flex: 1; min-width: 0; }
+.lesson-score-name { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lesson-score-bar { height: 6px; background: var(--cream-dark); border-radius: 99px; overflow: hidden; }
+.lesson-score-fill { height: 100%; border-radius: 99px; transition: width 0.4s; }
+.lesson-score-pct { font-size: 0.85rem; font-weight: 700; flex-shrink: 0; }

@@ -1,0 +1,64 @@
+/* PortuFácil — Responsive / Media Queries */
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 1024px) {
+  .hero-word-card { display: none; }
+  .verb-groups-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .how-timeline::before { display: none; }
+  .how-timeline { flex-direction: column; gap: 32px; }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 60px 0 40px; }
+  .hero h1 { font-size: 2rem; }
+  .hero-stats { gap: 20px; }
+
+  .quiz-mcq-options { grid-template-columns: 1fr; }
+  .quiz-card { padding: 24px; }
+
+  .ser-estar-visual { grid-template-columns: 1fr; }
+  .level-track { flex-direction: column; gap: 16px; }
+  .level-track-line { width: 4px; height: 40px; }
+  .level-track-node .level-node-label { bottom: auto; right: -80px; top: 50%; transform: translateY(-50%); }
+
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .vocab-categories-grid { grid-template-columns: repeat(3, 1fr); }
+  .flip-cards-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .hero-cta { flex-direction: column; align-items: flex-start; }
+
+  .nlb-body { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .nlb-btn { align-self: stretch; text-align: center; }
+  .level-progress-wrap { display: none; }
+  .chapter-divider { flex-wrap: wrap; gap: 8px; }
+
+  /* Dashboard */
+  .pdash-grid2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .vocab-categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .flip-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .flip-card-wrap { height: 160px; }
+  .badges-grid { grid-template-columns: repeat(2, 1fr); }
+  .alphabet-grid { grid-template-columns: repeat(4, 1fr); }
+
+  /* Dashboard mobile */
+  .pdash-hero-row1 { flex-direction: column; align-items: flex-start; }
+  .pdash-hero-stats { flex-wrap: wrap; gap: 12px; }
+  .pdash-save-actions { flex-direction: column; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

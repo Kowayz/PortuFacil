@@ -1,0 +1,267 @@
+/* PortuFácil — Conjugation Page */
+
+/* ============================
+   CONJUGATION PAGE
+   ============================ */
+.conjugation-search-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.conjugation-search {
+  flex: 1;
+  padding: 14px 20px;
+  border: 2px solid var(--cream-dark);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: var(--white);
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color var(--transition);
+  font-family: 'Lato', sans-serif;
+}
+
+.conjugation-search:focus { border-color: var(--blue); }
+
+.btn-conjugate {
+  padding: 14px 28px;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  transition: all var(--transition);
+}
+
+.btn-conjugate:hover { background: var(--blue-light); }
+
+.conjugation-result {
+  display: none;
+}
+
+.conjugation-result.show { display: block; }
+
+.conjugation-verb-header {
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.conjugation-verb-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.conjugation-verb-meaning {
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+.conj-irregular-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(200,75,49,0.9);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.tense-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.tense-tab {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: 2px solid var(--cream-dark);
+  background: var(--white);
+  color: var(--text-mid);
+}
+
+.tense-tab.active {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+}
+
+/* ============================
+   CONJUGATION TABLE
+   ============================ */
+.conj-table {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.conj-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.conj-table th {
+  background: var(--blue-pale);
+  padding: 12px 20px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--blue);
+}
+
+[data-theme="dark"] .conj-table th { background: rgba(26,58,92,0.4); color: var(--ochre-light); }
+
+.conj-table td {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(26,58,92,0.06);
+  font-size: 0.9rem;
+}
+
+.conj-table tr:last-child td { border-bottom: none; }
+.conj-table tr:hover td { background: var(--cream); }
+
+.conj-pronoun { color: var(--text-light); font-size: 0.85rem; }
+.conj-form { font-weight: 700; color: var(--text-dark); font-size: 1rem; }
+.conj-highlight { color: var(--red); }
+
+/* ============================
+   ESSENTIAL VERBS GRID
+   ============================ */
+.essential-verbs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.essential-verb-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  border: 2px solid transparent;
+}
+
+.essential-verb-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.essential-verb-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .essential-verb-name { color: var(--ochre-light); }
+
+.essential-verb-meaning { font-size: 0.85rem; color: var(--text-mid); }
+.essential-verb-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-top: 6px;
+}
+.badge-irreg { background: var(--red-pale); color: var(--red); }
+
+/* SER vs ESTAR visual */
+.ser-estar-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.ser-box, .estar-box {
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.ser-box { background: var(--blue-pale); border: 2px solid var(--blue); }
+.estar-box { background: var(--green-pale); border: 2px solid var(--green); }
+
+.ser-box h3 { color: var(--blue); margin-bottom: 12px; }
+.estar-box h3 { color: var(--green); margin-bottom: 12px; }
+
+.use-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.use-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--text-mid);
+}
+
+.use-list li::before {
+  content: '→';
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.ser-box .use-list li::before { color: var(--blue); }
+.estar-box .use-list li::before { color: var(--green); }
+
+/* Regular verbs comparison */
+.verb-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.verb-group-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.verb-group-header {
+  padding: 16px 20px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.ar-header { background: var(--blue); color: var(--white); }
+.er-header { background: var(--green); color: var(--white); }
+.ir-header { background: var(--ochre); color: var(--blue); }
+
+.verb-group-body { padding: 16px; }
+.verb-group-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--cream-dark);
+  font-size: 0.85rem;
+}
+.verb-group-row:last-child { border-bottom: none; }
+.vg-pronoun { color: var(--text-light); }
+.vg-ending { font-weight: 700; color: var(--text-dark); }

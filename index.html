@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PortuFácil — Apprenez le Portugais</title>
+  <meta name="description" content="Apprenez le portugais avec plaisir — De Lisbonne à São Paulo, une expérience d'apprentissage immersive et pédagogique pour francophones." />
+  <!-- styles injected by Vite via src/main.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body class="azulejo-bg">
+
+  <!-- LOADING SCREEN -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-logo">Portu<span>Fácil</span></div>
+    <div class="loading-spinner"></div>
+    <div class="loading-subtitle"><img src="https://flagcdn.com/20x15/pt.png" alt="PT" width="20" height="15" style="vertical-align:middle;border-radius:2px"> Carregando... <img src="https://flagcdn.com/20x15/br.png" alt="BR" width="20" height="15" style="vertical-align:middle;border-radius:2px"></div>
+  </div>
+
+  <!-- CONFETTI -->
+  <div class="confetti-container" id="confetti-container"></div>
+
+  <!-- TOASTS -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- LEVEL UP MODAL -->
+  <div class="xp-level-modal" id="xp-level-modal">
+    <div class="xp-level-content" id="xp-level-content"></div>
+  </div>
+
+  <!-- DICTIONARY MODAL -->
+  <div class="modal-overlay" id="dict-modal" onclick="if(event.target===this)closeDictModal()">
+    <div class="dict-modal-card">
+      <button class="dict-modal-close" onclick="closeDictModal()" aria-label="Fermer">✕</button>
+      <div id="dict-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- APP SHELL -->
+  <div class="app-shell">
+
+    <!-- Sidebar overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo" onclick="navigate('home')" style="cursor:pointer">
+        <img class="sidebar-logo-img" src="https://flagcdn.com/w80/pt.png" alt="PT" />
+        <span>PortuFácil</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="s-link" data-page="progress"><span class="s-icon">🏠</span><span class="s-label">Accueil</span></button>
+        <div class="s-sep"></div>
+        <div class="s-section-label">Apprendre</div>
+        <button class="s-link" data-page="lessons"><span class="s-icon">📚</span><span class="s-label">Leçons</span></button>
+        <button class="s-link" data-page="vocabulary"><span class="s-icon">📖</span><span class="s-label">Vocabulaire</span></button>
+        <button class="s-link" data-page="conjugation"><span class="s-icon">🔤</span><span class="s-label">Conjugaison</span></button>
+        <button class="s-link" data-page="pronunciation"><span class="s-icon">🎤</span><span class="s-label">Prononciation</span></button>
+        <div class="s-sep"></div>
+        <div class="s-section-label">Pratiquer</div>
+        <button class="s-link" data-page="quiz"><span class="s-icon">🧠</span><span class="s-label">Quiz</span></button>
+        <div class="s-sep"></div>
+        <div class="s-section-label">Découvrir</div>
+        <button class="s-link" data-page="home"><span class="s-icon">🌍</span><span class="s-label">À propos</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-stats">
+          <div class="sidebar-stat">⭐ <span id="nav-xp-val">0 XP</span></div>
+          <div class="sidebar-stat">🔥 <span id="nav-streak-val">0</span></div>
+        </div>
+        <button class="btn-icon" id="btn-theme" title="Changer le thème">🌙</button>
+      </div>
+    </aside>
+
+    <!-- MAIN BODY -->
+    <div class="app-body">
+
+      <!-- Mobile top bar -->
+      <header class="app-topbar">
+        <button class="topbar-hamburger" id="nav-hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="topbar-logo" onclick="navigate('progress')" style="cursor:pointer">
+          <img src="https://flagcdn.com/w80/pt.png" alt="PT" width="26" style="border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.2)" />
+          PortuFácil
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-stat">⭐ <span id="nav-xp-val-mob">0 XP</span></div>
+          <div class="topbar-stat">🔥 <span id="nav-streak-val-mob">0</span></div>
+          <button class="btn-icon" id="btn-theme-mob" title="Changer le thème">🌙</button>
+        </div>
+      </header>
+
+      <!-- All pages -->
+      <main class="app-pages">
+
+  <!-- ==================== PAGE: HOME ==================== -->
+  <div class="page active" id="page-home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-pattern"></div>
+      <div class="container hero-content">
+        <div class="hero-flags">
+          <img class="hero-flag" src="https://flagcdn.com/48x36/pt.png" alt="Portugal" width="48" height="36" />
+          <img class="hero-flag" src="https://flagcdn.com/48x36/br.png" alt="Brésil" width="48" height="36" />
+        </div>
+        <div class="hero-badge">✨ Apprenez avec plaisir</div>
+        <h1>Aprenda Português —<br><em>Apprenez le portugais</em></h1>
+        <p class="hero-sub">De Lisbonne à São Paulo, ouvrez les portes d'une langue parlée par 260 millions de personnes. Un voyage culturel et linguistique qui commence ici.</p>
+        <div class="hero-cta">
+          <button class="btn-primary" id="hero-cta-btn">
+            Commencer l'aventure →
+          </button>
+          <button class="btn-secondary" id="hero-demo-btn">
+            🎯 Quiz rapide
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">260M</span>
+            <span class="hero-stat-label">Locuteurs</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">9</span>
+            <span class="hero-stat-label">Leçons A1</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">100+</span>
+            <span class="hero-stat-label">Mots appris</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">5ème</span>
+            <span class="hero-stat-label">Langue mondiale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Word of Day Card -->
+      <div class="hero-word-card">
+        <div class="word-of-day-label">🌟 Mot du jour</div>
+        <div class="word-of-day-word"><span id="wod-emoji"></span> <span id="wod-word"></span></div>
+        <div class="word-of-day-trans" id="wod-trans"></div>
+        <div class="word-of-day-example" id="wod-example"></div>
+      </div>
+    </section>
+
+    <!-- WHY PORTUGUESE -->
+    <section class="section container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Pourquoi apprendre le portugais ?</h2>
+        <p class="section-sub">Une langue de culture, d'aventure et d'opportunités, présente sur 4 continents.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card fade-in">
+          <span class="why-card-icon">🌍</span>
+          <span class="why-card-num">260M</span>
+          <h3>Locuteurs dans le monde</h3>
+          <p>5ème langue la plus parlée au monde, présente en Europe, Amérique du Sud, Afrique et Asie.</p>
+        </div>
+        <div class="why-card fade-in">
+          <span class="why-card-icon">🏆</span>
+          <span class="why-card-num">#2</span>
+          <h3>Langue romane</h3>
+          <p>Proche du français, de l'espagnol et de l'italien — vos bases linguistiques vous donnent une longueur d'avance !</p>
+        </div>
+        <div class="why-card fade-in">
+          <span class="why-card-icon">💼</span>
+          <span class="why-card-num">+9</span>
+          <h3>Pays officiels</h3>
+          <p>Portugal, Brésil, Angola, Mozambique... Ouverture sur des marchés économiques dynamiques.</p>
+        </div>
+        <div class="why-card fade-in">
+          <span class="why-card-icon">🎭</span>
+          <span class="why-card-num">∞</span>
+          <h3>Richesse culturelle</h3>
+          <p>Fado, Bossa Nova, Fernando Pessoa, Saramago, Carnaval de Rio... Un patrimoine culturel exceptionnel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section bg-section-alt">
+      <div class="container">
+        <div class="section-header fade-in text-center" style="margin-bottom:48px">
+          <h2 class="section-title">Comment ça marche ?</h2>
+          <p class="section-sub" style="margin:0 auto">Trois étapes simples pour progresser rapidement.</p>
+        </div>
+        <div class="how-timeline fade-in">
+          <div class="how-step">
+            <div class="how-step-icon">📖</div>
+            <h3>1. Apprends une leçon</h3>
+            <p>Vocabulaire illustré, exemples contextuels, tableaux comparatifs Portugal vs Brésil.</p>
+          </div>
+          <div class="how-step">
+            <div class="how-step-icon">⚡</div>
+            <h3>2. Pratique le vocabulaire</h3>
+            <p>Cartes retournables, répétition espacée, filtres par niveau de maîtrise.</p>
+          </div>
+          <div class="how-step">
+            <div class="how-step-icon">🏆</div>
+            <h3>3. Teste tes connaissances</h3>
+            <p>Quiz variés, défi quotidien, feedback immédiat et XP à gagner !</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <div class="quote-section">
+      <div class="container quote-content">
+        <p class="quote-text" id="quote-text">"Não sou nada. Nunca serei nada."</p>
+        <div class="quote-author" id="quote-author">— Fernando Pessoa</div>
+      </div>
+    </div>
+
+    <!-- SRS WIDGET -->
+    <div class="srs-widget" id="srs-widget"></div>
+
+    <!-- CULTURAL FACTS -->
+    <section class="section container" style="padding-top:40px">
+      <div class="section-header fade-in">
+        <h2 class="section-title">🎭 Culture &amp; Histoire</h2>
+        <p class="section-sub">Apprendre une langue, c'est découvrir une culture. Voici quelques faits fascinants...</p>
+      </div>
+      <div class="cultural-grid" id="cultural-facts-container"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo"><img src="https://flagcdn.com/20x15/pt.png" alt="PT" width="20" height="15" style="vertical-align:middle;border-radius:2px;margin-right:4px"> PortuFácil</div>
+            <p class="footer-desc">Apprendre le portugais avec plaisir, de Lisbonne à São Paulo. Gratuit, sans inscription, directement dans votre navigateur.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Apprendre</h4>
+            <ul class="footer-links">
+              <li><a onclick="navigate('lessons')">📚 Leçons</a></li>
+              <li><a onclick="navigate('vocabulary')">📖 Vocabulaire</a></li>
+              <li><a onclick="navigate('conjugation')">🔤 Conjugaison</a></li>
+              <li><a onclick="navigate('pronunciation')">🎤 Prononciation</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Progresser</h4>
+            <ul class="footer-links">
+              <li><a onclick="navigate('quiz')">🧠 Quiz</a></li>
+              <li><a onclick="navigate('progress')">🏠 Tableau de bord</a></li>
+              <li><a onclick="exportProgress()">📦 Exporter mes données</a></li>
+              <li><a onclick="document.getElementById('import-input').click()">📥 Importer</a></li>
+            </ul>
+            <input type="file" id="import-input" accept=".json" style="display:none" onchange="importProgress(event)" />
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2025 PortuFácil — Fait avec ❤️ pour les amoureux du portugais</span>
+          <div class="footer-flags">
+            <img src="https://flagcdn.com/20x15/pt.png" alt="PT" width="20" height="15" style="border-radius:2px">
+            <img src="https://flagcdn.com/20x15/br.png" alt="BR" width="20" height="15" style="border-radius:2px">
+            <img src="https://flagcdn.com/20x15/ao.png" alt="AO" width="20" height="15" style="border-radius:2px">
+            <img src="https://flagcdn.com/20x15/mz.png" alt="MZ" width="20" height="15" style="border-radius:2px">
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==================== PAGE: LESSONS ==================== -->
+  <div class="page" id="page-lessons">
+    <div class="section container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">📚 Leçons</h2>
+        <p class="section-sub">Un parcours structuré du niveau A1 au B2. Chaque leçon vous rapproche de la maîtrise !</p>
+      </div>
+
+      <!-- Lessons Roadmap -->
+      <div id="lessons-roadmap" class="lesson-roadmap"></div>
+
+      <!-- Lesson Detail (hidden by default) -->
+      <div id="lesson-detail" class="lesson-detail"></div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE: VOCABULARY ==================== -->
+  <div class="page" id="page-vocabulary">
+    <div class="section container">
+
+      <!-- Header -->
+      <div class="vocab-page-header fade-in">
+        <h2 style="font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:8px">📖 Vocabulaire Thématique</h2>
+        <p style="opacity:0.85;font-size:1rem">Explorez le vocabulaire par thèmes. Retournez les cartes pour révéler la traduction !</p>
+        <div style="margin-top:12px;font-size:0.85rem;opacity:0.75">
+          🔴 Nouveau &nbsp;|&nbsp; 🟡 En cours &nbsp;|&nbsp; 🟢 Maîtrisé
+        </div>
+      </div>
+
+      <!-- Search & Controls -->
+      <div class="vocab-search-row">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="vocab-search" id="vocab-search" placeholder="Rechercher un mot..." />
+        </div>
+        <button class="btn-shuffle" id="btn-shuffle">🔀 Mélanger</button>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="vocab-filter-tabs">
+        <button class="vocab-filter-tab active" data-filter="all">Tous</button>
+        <button class="vocab-filter-tab" data-filter="review">À réviser 🔴🟡</button>
+        <button class="vocab-filter-tab" data-filter="learned">Maîtrisés 🟢</button>
+        <button class="vocab-filter-tab" data-filter="srs">📅 SRS</button>
+        <button class="vocab-filter-tab" data-filter="hard">⚠️ Difficile</button>
+      </div>
+
+      <!-- Categories -->
+      <div class="vocab-categories-grid" id="vocab-categories"></div>
+
+      <!-- Stats Bar -->
+      <div class="vocab-stats-bar" id="vocab-stats-bar"></div>
+
+      <!-- Flip Cards -->
+      <div id="flip-cards-container"></div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE: CONJUGATION ==================== -->
+  <div class="page" id="page-conjugation">
+    <div class="section container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">🔤 Conjugaison</h2>
+        <p class="section-sub">Maîtrisez les conjugaisons portugaises. Recherchez un verbe ou explorez les verbes essentiels.</p>
+      </div>
+
+      <!-- Search -->
+      <div class="conjugation-search-row">
+        <input type="text" class="conjugation-search" id="conjugation-search" placeholder="Rechercher un verbe... (ex: ser, fazer, ir)" />
+        <button class="btn-conjugate" id="conjugation-search-btn">Conjuguer →</button>
+      </div>
+
+      <!-- Result -->
+      <div class="conjugation-result" id="conjugation-result"></div>
+
+      <!-- SER vs ESTAR -->
+      <div class="lesson-section-card fade-in" style="margin-top:32px">
+        <h2 class="lesson-section-title">⚖️ SER vs ESTAR — Les deux verbes "être"</h2>
+        <div class="lesson-section-text">💡 C'est LA difficulté numéro 1 pour les francophones ! En portugais, il existe deux verbes "être" avec des usages très distincts.</div>
+        <div class="ser-estar-visual">
+          <div class="ser-box">
+            <h3>SER — Permanent</h3>
+            <ul class="use-list">
+              <li>Identité / nom</li>
+              <li>Nationalité / origine</li>
+              <li>Profession</li>
+              <li>Caractéristiques permanentes</li>
+              <li>Heure, date, lieu d'événements</li>
+              <li>Relations familiales</li>
+              <li>Matériaux, nature des choses</li>
+            </ul>
+          </div>
+          <div class="estar-box">
+            <h3>ESTAR — Temporaire</h3>
+            <ul class="use-list">
+              <li>États émotionnels</li>
+              <li>Localisation (personnes, objets)</li>
+              <li>Santé, forme physique</li>
+              <li>États temporaires</li>
+              <li>Résultat d'une action</li>
+              <li>Météo (temps qu'il fait)</li>
+              <li>Progressif (estar + -ando/-endo)</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:16px;background:var(--ochre-pale);border-radius:var(--radius);border-left:3px solid var(--ochre)">
+          <strong>💡 Astuce mémo :</strong> Demandez-vous : "Est-ce que ça peut changer ?" → Oui = ESTAR / Non = SER<br>
+          <em>Ex: "Je suis fatigué" peut changer → ESTAR. "Je suis français" ne change pas → SER.</em>
+        </div>
+      </div>
+
+      <!-- Essential Verbs -->
+      <div class="fade-in" style="margin-top:32px">
+        <h3 style="color:var(--blue);font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:20px">
+          ⚡ Verbes essentiels — Les 8 piliers du portugais
+        </h3>
+        <div class="essential-verbs-grid" id="essential-verbs-container"></div>
+      </div>
+
+      <!-- Regular verb groups -->
+      <div class="lesson-section-card fade-in" style="margin-top:32px">
+        <h2 class="lesson-section-title">📋 Verbes réguliers — Terminaisons -AR, -ER, -IR</h2>
+        <div class="lesson-section-text">
+          💡 Les verbes réguliers suivent toujours le même schéma. Maîtrisez ces terminaisons et vous pouvez conjuguer des milliers de verbes !
+        </div>
+        <div id="verb-groups-container"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== PAGE: PRONUNCIATION ==================== -->
+  <div class="page" id="page-pronunciation">
+    <div class="section container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">🎤 Prononciation</h2>
+        <p class="section-sub">Les sons du portugais démystifiés. Cliquez sur les lettres pour entendre leur prononciation !</p>
+      </div>
+
+      <!-- PT vs BR banner -->
+      <div style="background:linear-gradient(135deg,var(--blue),var(--blue-light));border-radius:var(--radius-lg);padding:20px 28px;color:white;margin-bottom:32px;display:flex;gap:20px;align-items:center;flex-wrap:wrap" class="fade-in">
+        <div>
+          <strong><img src="https://flagcdn.com/24x18/pt.png" alt="PT" width="24" height="18" style="vertical-align:middle;border-radius:2px;margin-right:4px">Portugais Européen</strong><br>
+          <small style="opacity:0.8">Consonnes plus ouvertes, voyelles réduites, S final = "sh"</small>
+        </div>
+        <div style="font-size:1.5rem">⟺</div>
+        <div>
+          <strong><img src="https://flagcdn.com/24x18/br.png" alt="BR" width="24" height="18" style="vertical-align:middle;border-radius:2px;margin-right:4px">Portugais Brésilien</strong><br>
+          <small style="opacity:0.8">Accent plus mélodieux, D+I = "dj", T+I = "tch", voyelles ouvertes</small>
+        </div>
+      </div>
+
+      <!-- Alphabet -->
+      <div class="lesson-section-card fade-in">
+        <h2 class="lesson-section-title">🔡 L'Alphabet Portugais</h2>
+        <div class="lesson-section-text">💡 Cliquez sur une lettre pour entendre la prononciation (si votre navigateur supporte la synthèse vocale).</div>
+        <div id="alphabet-container"></div>
+      </div>
+
+      <!-- Special Sounds -->
+      <div class="lesson-section-card fade-in" style="margin-top:24px">
+        <h2 class="lesson-section-title">🔊 Sons Spéciaux — Spécificités du portugais</h2>
+        <div class="lesson-section-text">💡 Ces sons n'existent pas en français — ils demandent un entraînement particulier !</div>
+        <div id="special-sounds-container"></div>
+      </div>
+
+      <!-- Vowel Table -->
+      <div class="lesson-section-card fade-in" style="margin-top:24px">
+        <h2 class="lesson-section-title">👃 Voyelles nasales — Le défi des francophones</h2>
+        <div class="lesson-section-text">💡 Les voyelles nasales sont caractéristiques du portugais. L'air passe par le nez ET la bouche simultanément.</div>
+        <div style="overflow-x:auto">
+          <table class="comparison-table" style="margin-top:0">
+            <thead>
+              <tr>
+                <th>Son</th>
+                <th>Orthographe</th>
+                <th>Exemples</th>
+                <th>Équivalent français</th>
+                <th>Astuce</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>ã</td><td>ã, -am, -ã</td><td>mã, amanhã, padrão</td><td>Comme "an" + nasalité</td><td>Imaginez "an" avec le nez pincé</td></tr>
+              <tr><td>ão</td><td>-ão, -am</td><td>pão, mão, coração</td><td>Comme "ong" nasal</td><td>"Pa-ong" en pinçant le nez</td></tr>
+              <tr><td>ẽ</td><td>em, en</td><td>bem, vem, também</td><td>Comme "ein" nasal</td><td>Proche de "bein" québécois</td></tr>
+              <tr><td>ĩ</td><td>im, in</td><td>sim, fim, jardim</td><td>Comme "in" + nasalité</td><td>"Sim" = "sin" nasal</td></tr>
+              <tr><td>ũ</td><td>um, un</td><td>um, bom, álbum</td><td>Comme "on" nasal</td><td>Proche de "un" français</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Traps -->
+      <div class="fade-in" style="margin-top:32px">
+        <h3 style="color:var(--red);font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:20px">
+          ⚠️ Pièges de Prononciation — Les 5 erreurs des francophones
+        </h3>
+        <div style="display:flex;flex-direction:column;gap:16px" id="traps-container"></div>
+      </div>
+
+      <!-- Practice phrases -->
+      <div class="lesson-section-card fade-in" style="margin-top:24px">
+        <h2 class="lesson-section-title">🗣️ Phrases d'entraînement</h2>
+        <div class="lesson-section-text">💡 Pratiquez ces phrases pour vous habituer aux sons du portugais. Cliquez sur 🔊 pour entendre !</div>
+        <div id="practice-phrases-container" style="display:flex;flex-direction:column;gap:12px;margin-top:8px"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== PAGE: QUIZ ==================== -->
+  <div class="page" id="page-quiz">
+    <div class="section container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">🧠 Quiz &amp; Exercices</h2>
+        <p class="section-sub">Testez vos connaissances, maintenez votre streak et gagnez des XP !</p>
+      </div>
+
+      <!-- Quiz Modes -->
+      <div id="quiz-modes-section">
+        <div class="quiz-modes-grid">
+          <div class="quiz-mode-card fade-in" onclick="startQuiz('quick')">
+            <span class="quiz-mode-icon">⚡</span>
+            <h3>Quiz Rapide</h3>
+            <p class="quiz-mode-desc">10 questions mélangées — vocabulaire et grammaire. Parfait pour une révision express !</p>
+            <div class="quiz-mode-meta">
+              <span class="quiz-meta-badge badge-blue">10 questions</span>
+              <span class="quiz-meta-badge badge-ochre">~5 min</span>
+              <span class="quiz-meta-badge badge-green">+100 XP max</span>
+            </div>
+          </div>
+          <div class="quiz-mode-card fade-in" onclick="startQuiz('daily')">
+            <span class="quiz-mode-icon">🔥</span>
+            <h3>Défi Quotidien</h3>
+            <p class="quiz-mode-desc">5 questions chaque jour pour maintenir votre streak. Revenez tous les jours !</p>
+            <div class="quiz-mode-meta">
+              <span class="quiz-meta-badge badge-red">5 questions</span>
+              <span class="quiz-meta-badge badge-ochre">~3 min</span>
+              <span class="quiz-meta-badge badge-green">🔥 Streak</span>
+            </div>
+          </div>
+          <div class="quiz-mode-card fade-in" onclick="startQuiz('vocab')">
+            <span class="quiz-mode-icon">📖</span>
+            <h3>Quiz Vocabulaire</h3>
+            <p class="quiz-mode-desc">Testez votre vocabulaire thématique — corps, animaux, nourriture, émotions et plus.</p>
+            <div class="quiz-mode-meta">
+              <span class="quiz-meta-badge badge-blue">10 questions</span>
+              <span class="quiz-meta-badge badge-green">Thématique</span>
+            </div>
+          </div>
+          <div class="quiz-mode-card fade-in" onclick="startQuiz('conjugation')">
+            <span class="quiz-mode-icon">🔤</span>
+            <h3>Quiz Conjugaison</h3>
+            <p class="quiz-mode-desc">Conjuguez les verbes essentiels : ser, estar, ter, ir, fazer... et testez votre mémoire !</p>
+            <div class="quiz-mode-meta">
+              <span class="quiz-meta-badge badge-blue">8 questions</span>
+              <span class="quiz-meta-badge badge-ochre">Verbes clés</span>
+            </div>
+          </div>
+          <div class="quiz-mode-card fade-in" onclick="startQuiz('srs')">
+            <span class="quiz-mode-icon">📅</span>
+            <h3>Révision SRS</h3>
+            <p class="quiz-mode-desc">Révisez les mots planifiés par l'algorithme de répétition espacée. Ne laissez rien s'oublier !</p>
+            <div class="quiz-mode-meta">
+              <span class="quiz-meta-badge badge-blue">Adaptatif</span>
+              <span class="quiz-meta-badge badge-green">Mémoire longue</span>
+            </div>
+          </div>
+          <div class="quiz-mode-card fade-in" onclick="startQuiz('errors')">
+            <span class="quiz-mode-icon">🎯</span>
+            <h3>Révision Ciblée</h3>
+            <p class="quiz-mode-desc">Travaillez vos points faibles — les mots que vous avez le plus souvent ratés lors des quiz.</p>
+            <div class="quiz-mode-meta">
+              <span class="quiz-meta-badge badge-red">10 questions</span>
+              <span class="quiz-meta-badge badge-ochre">Points faibles</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Daily challenge banner -->
+        <div style="background:linear-gradient(135deg,var(--red),#E06A50);border-radius:var(--radius-lg);padding:24px 32px;color:white;margin-top:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px" class="fade-in">
+          <div>
+            <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px">🔥 Votre streak actuel : <span id="quiz-streak-display" style="font-size:1.4rem">0</span> jours</div>
+            <div style="opacity:0.85;font-size:0.875rem">Faites le défi quotidien pour maintenir votre série !</div>
+          </div>
+          <button onclick="startQuiz('daily')" style="padding:12px 24px;background:white;color:var(--red);border:none;border-radius:50px;font-weight:700;cursor:pointer;font-size:0.95rem">
+            Relever le défi →
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Quiz -->
+      <div class="quiz-active" id="quiz-active">
+        <div class="quiz-header">
+          <div>
+            <div class="quiz-title" id="quiz-title">Quiz</div>
+            <div class="quiz-progress-text" id="quiz-progress-text">1 / 10</div>
+          </div>
+          <div style="flex:1"></div>
+          <button onclick="backToQuizModes()" style="background:rgba(255,255,255,0.2);color:white;border:none;border-radius:var(--radius);padding:8px 16px;cursor:pointer;font-size:0.85rem">✕ Quitter</button>
+        </div>
+        <div class="quiz-bar">
+          <div class="quiz-bar-fill" id="quiz-progress-bar-fill" style="width:0%"></div>
+        </div>
+
+        <div class="quiz-card" style="margin-top:16px">
+          <div id="quiz-card-body"></div>
+        </div>
+
+        <div class="quiz-action-row">
+          <button class="btn-submit-quiz" id="quiz-submit-btn" style="display:none">Vérifier ✓</button>
+          <button class="btn-next-quiz" id="quiz-next-btn">Question suivante →</button>
+        </div>
+      </div>
+
+      <!-- Quiz Result -->
+      <div class="quiz-result" id="quiz-result"></div>
+
+    </div>
+  </div>
+
+  <!-- ==================== PAGE: PROGRESS ==================== -->
+  <div class="page" id="page-progress">
+    <div class="section container">
+
+      <!-- Compact hero identity strip -->
+      <div class="pdash-hero fade-in">
+        <div class="pdash-hero-row1">
+          <span class="pdash-level-pill" id="pdash-level-pill">Niveau 1 · Débutant</span>
+          <div class="pdash-hero-stats">
+            <div class="pdash-stat">
+              <span>🔥</span>
+              <strong id="pdash-streak">0</strong>
+              <span class="pdash-stat-lbl">jours</span>
+            </div>
+            <div class="pdash-stat">
+              <span>📖</span>
+              <strong id="pdash-words">0</strong>
+              <span class="pdash-stat-lbl">mots</span>
+            </div>
+            <div class="pdash-stat">
+              <span>📚</span>
+              <strong id="pdash-lessons-count">0</strong>
+              <span class="pdash-stat-lbl">leçons</span>
+            </div>
+            <div class="pdash-stat">
+              <span>⏱️</span>
+              <strong id="pdash-time">0 min</strong>
+              <span class="pdash-stat-lbl">d'étude</span>
+            </div>
+          </div>
+        </div>
+        <div class="pdash-hero-xp">
+          <div class="pdash-xp-bar">
+            <div class="pdash-xp-fill" id="pdash-xp-fill" style="width:0%"></div>
+          </div>
+          <span class="pdash-xp-label" id="pdash-xp-label">0 / 200 XP vers le niveau 2</span>
+        </div>
+      </div>
+
+      <!-- Personalized action plan -->
+      <div class="pdash-section-label fade-in" id="pdash-actions-label">📋 Que faire maintenant ?</div>
+      <div id="pdash-actions" class="pdash-actions fade-in"></div>
+
+      <!-- Level roadmap -->
+      <div class="pdash-section-label fade-in">🗺️ Votre parcours A1 → B2</div>
+      <div id="pdash-roadmap" class="pdash-roadmap-card fade-in"></div>
+
+      <!-- 2-column grid: weak spots + weekly activity -->
+      <div class="pdash-grid2 fade-in">
+        <div class="pdash-card">
+          <div class="pdash-card-title">🎯 Points à travailler</div>
+          <div id="pdash-weak"></div>
+        </div>
+        <div class="pdash-card">
+          <div class="pdash-card-title">📅 Activité de la semaine</div>
+          <div class="activity-bars" id="activity-bars-container"></div>
+        </div>
+      </div>
+
+      <!-- Badges with filter tabs -->
+      <div class="pdash-card fade-in" style="margin-bottom:20px">
+        <div class="pdash-badges-header">
+          <div class="pdash-card-title" style="margin-bottom:0">🏅 Badges &amp; Récompenses</div>
+          <span class="pdash-badges-count" id="pdash-badges-count">0 / 0</span>
+        </div>
+        <div class="dash-badge-tabs">
+          <button class="dash-badge-tab active" onclick="filterBadges('all')">Tous</button>
+          <button class="dash-badge-tab" onclick="filterBadges('earned')">Obtenus</button>
+          <button class="dash-badge-tab" onclick="filterBadges('locked')">À débloquer</button>
+        </div>
+        <div class="badges-grid" id="badges-container"></div>
+      </div>
+
+      <!-- Save / Export -->
+      <div class="pdash-card fade-in">
+        <div class="pdash-card-title">💾 Sauvegarder ma progression</div>
+        <p class="pdash-save-desc">Vos données sont sauvegardées automatiquement dans votre navigateur. Exportez-les pour les conserver ou les transférer sur un autre appareil.</p>
+        <div class="pdash-save-actions">
+          <button onclick="exportProgress()" class="btn-save btn-save-export">📦 Exporter (JSON)</button>
+          <button onclick="document.getElementById('import-input-2').click()" class="btn-save btn-save-import">📥 Importer</button>
+          <button onclick="if(confirm('Réinitialiser toute votre progression ?')){localStorage.clear();location.reload()}" class="btn-save btn-save-reset">🗑️ Réinitialiser</button>
+        </div>
+        <input type="file" id="import-input-2" accept=".json" style="display:none" onchange="importProgress(event)" />
+      </div>
+
+    </div>
+  </div>
+
+      </main><!-- /.app-pages -->
+    </div><!-- /.app-body -->
+  </div><!-- /.app-shell -->
+
+  <!-- BOTTOM NAV (mobile only) -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <button class="bn-link" data-page="progress"><span class="bn-icon">🏠</span><span class="bn-label">Accueil</span></button>
+    <button class="bn-link" data-page="lessons"><span class="bn-icon">📚</span><span class="bn-label">Leçons</span></button>
+    <button class="bn-link" data-page="quiz"><span class="bn-icon">🧠</span><span class="bn-label">Quiz</span></button>
+    <button class="bn-link" data-page="vocabulary"><span class="bn-icon">📖</span><span class="bn-label">Vocab</span></button>
+    <button class="bn-link" data-page="conjugation"><span class="bn-icon">🔤</span><span class="bn-label">Gram.</span></button>
+  </nav>
+
+  <!-- Entry point (Vite handles bundling) -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

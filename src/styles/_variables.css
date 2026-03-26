@@ -1,0 +1,49 @@
+/* PortuFácil — CSS Custom Properties */
+
+/* ============================
+   FONTS & VARIABLES
+   ============================ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --blue: #1A3A5C;
+  --blue-light: #2A5080;
+  --blue-pale: #E8F0F8;
+  --cream: #FAF7F2;
+  --cream-dark: #F0EBE3;
+  --ochre: #E8A838;
+  --ochre-light: #F5C96A;
+  --ochre-pale: #FDF3DC;
+  --green: #4A7C59;
+  --green-light: #6AAB7A;
+  --green-pale: #E8F4EC;
+  --red: #C84B31;
+  --red-light: #E06A50;
+  --red-pale: #FAE8E4;
+  --white: #FFFFFF;
+  --text-dark: #1C2B3A;
+  --text-mid: #4A5568;
+  --text-light: #718096;
+  --shadow-sm: 0 2px 8px rgba(26,58,92,0.08);
+  --shadow-md: 0 4px 16px rgba(26,58,92,0.12);
+  --shadow-lg: 0 8px 32px rgba(26,58,92,0.16);
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+[data-theme="dark"] {
+  --cream: #0F1E2E;
+  --cream-dark: #162538;
+  --blue-pale: #1A3A5C;
+  --white: #1C2E40;
+  --text-dark: #E8EFF7;
+  --text-mid: #A0B4C8;
+  --text-light: #7090A8;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  --ochre-pale: #2A1F0A;
+  --green-pale: #0A1F10;
+  --red-pale: #1F0A08;
+}

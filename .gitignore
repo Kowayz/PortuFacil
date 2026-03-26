@@ -1,0 +1,6 @@
+node_modules/
+dist/
+logs/
+PROMPT_build.md
+PROMPT_plan.md
+.claude/settings.local.json
