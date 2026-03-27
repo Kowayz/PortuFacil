@@ -17,6 +17,9 @@ export function checkBadges() {
   const dueWords = getDueWords(STATE.learnedWords);
   const b1Lessons = DATA.lessons.filter(l => l.level === 'B1');
 
+  const b2Done = STATE.completedLessons.filter(id => id.startsWith('b2-')).length;
+  const masteredCount = Object.values(STATE.learnedWords).filter(w => w?.status === 'mastered').length;
+
   const badgeConditions = {
     first_word:      learnedCount >= 1,
     ten_words:       learnedCount >= 10,
@@ -44,6 +47,21 @@ export function checkBadges() {
     week_warrior:    activeAllWeek,
     srs_streak_7:    dueWords.length === 0 && STATE.streak >= 7,
     speed_learner:   STATE.completedLessons.length >= 1,
+    b2_started:      b2Done >= 1,
+    b2_complete:     b2Done >= 6,
+    lesson_10:       STATE.completedLessons.length >= 10,
+    lesson_20:       STATE.completedLessons.length >= 20,
+    all_lessons:     STATE.completedLessons.length >= 25,
+    words_25:        masteredCount >= 25,
+    words_200:       masteredCount >= 200,
+    streak_14:       STATE.streak >= 14,
+    streak_60:       STATE.streak >= 60,
+    time_30min:      (STATE.totalSeconds || 0) >= 1800,
+    time_5h:         (STATE.totalSeconds || 0) >= 18000,
+    time_20h:        (STATE.totalSeconds || 0) >= 72000,
+    quiz_10:         (STATE.quizCount || 0) >= 10,
+    quiz_srs:        (STATE.srsCount || 0) >= 5,
+    xp_500:          STATE.xp >= 500,
   };
 
   const newBadges = [];

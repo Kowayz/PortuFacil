@@ -114,4 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('nav-links')?.classList.remove('open');
     }
   });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
 });

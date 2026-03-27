@@ -1190,6 +1190,124 @@ export const vocabulary = {
         { "pt": "aqui", "fr": "ici", "img": "📍" },
         { "pt": "lá", "fr": "là-bas", "img": "🗺️" }
       ]
+    },
+    {
+      "id": "tecnologia",
+      "name": "Technologie (BR)",
+      "icon": "💻",
+      "color": "#3498db",
+      "words": [
+        { "pt": "o computador", "fr": "l'ordinateur", "img": "💻" },
+        { "pt": "o celular", "fr": "le téléphone portable", "img": "📱" },
+        { "pt": "a internet", "fr": "internet", "img": "🌐" },
+        { "pt": "o aplicativo", "fr": "l'application", "img": "📲" },
+        { "pt": "a senha", "fr": "le mot de passe", "img": "🔐" },
+        { "pt": "o arquivo", "fr": "le fichier", "img": "📁" },
+        { "pt": "a tela", "fr": "l'écran", "img": "🖥️" },
+        { "pt": "o teclado", "fr": "le clavier", "img": "⌨️" },
+        { "pt": "a impressora", "fr": "l'imprimante", "img": "🖨️" },
+        { "pt": "o carregador", "fr": "le chargeur", "img": "🔌" },
+        { "pt": "baixar", "fr": "télécharger", "img": "⬇️" },
+        { "pt": "enviar", "fr": "envoyer", "img": "📤" },
+        { "pt": "a rede", "fr": "le réseau", "img": "🌐" },
+        { "pt": "o site", "fr": "le site web", "img": "🌍" },
+        { "pt": "o wi-fi", "fr": "le wi-fi", "img": "📶" },
+        { "pt": "o vídeo", "fr": "la vidéo", "img": "🎬" },
+        { "pt": "a mensagem", "fr": "le message", "img": "💬" },
+        { "pt": "o fone de ouvido", "fr": "le casque audio", "img": "🎧" },
+        { "pt": "salvar", "fr": "sauvegarder", "img": "💾" },
+        { "pt": "deletar", "fr": "supprimer", "img": "🗑️" }
+      ]
+    },
+    {
+      "id": "clima",
+      "name": "Météo & Nature",
+      "icon": "⛅",
+      "color": "#27ae60",
+      "words": [
+        { "pt": "o sol", "fr": "le soleil", "img": "☀️" },
+        { "pt": "a chuva", "fr": "la pluie", "img": "🌧️" },
+        { "pt": "o vento", "fr": "le vent", "img": "💨" },
+        { "pt": "a neve", "fr": "la neige", "img": "❄️" },
+        { "pt": "a nuvem", "fr": "le nuage", "img": "☁️" },
+        { "pt": "o trovão", "fr": "le tonnerre", "img": "⛈️" },
+        { "pt": "o calor", "fr": "la chaleur", "img": "🌡️" },
+        { "pt": "o frio", "fr": "le froid", "img": "🥶" },
+        { "pt": "a tempestade", "fr": "la tempête", "img": "🌪️" },
+        { "pt": "o arco-íris", "fr": "l'arc-en-ciel", "img": "🌈" },
+        { "pt": "úmido", "fr": "humide", "img": "💧" },
+        { "pt": "seco", "fr": "sec", "img": "🏜️" },
+        { "pt": "o granizo", "fr": "la grêle", "img": "🌨️" },
+        { "pt": "a geada", "fr": "le gel / la gelée", "img": "🧊" },
+        { "pt": "a previsão do tempo", "fr": "la météo", "img": "📱" },
+        { "pt": "o furacão", "fr": "l'ouragan", "img": "🌀" },
+        { "pt": "o raio", "fr": "la foudre", "img": "⚡" },
+        { "pt": "ensolarado", "fr": "ensoleillé", "img": "☀️" }
+      ]
+    },
+    {
+      "id": "viagens",
+      "name": "Voyages",
+      "icon": "✈️",
+      "color": "#9b59b6",
+      "words": [
+        { "pt": "o aeroporto", "fr": "l'aéroport", "img": "✈️" },
+        { "pt": "o avião", "fr": "l'avion", "img": "🛫" },
+        { "pt": "o hotel", "fr": "l'hôtel", "img": "🏨" },
+        { "pt": "a mala", "fr": "la valise", "img": "🧳" },
+        { "pt": "o passaporte", "fr": "le passeport", "img": "🛂" },
+        { "pt": "a viagem", "fr": "le voyage", "img": "🗺️" },
+        { "pt": "o bilhete", "fr": "le billet", "img": "🎫" },
+        { "pt": "o voo", "fr": "le vol", "img": "✈️" },
+        { "pt": "a reserva", "fr": "la réservation", "img": "📞" },
+        { "pt": "o guia", "fr": "le guide", "img": "📖" },
+        { "pt": "o turista", "fr": "le touriste", "img": "🧳" },
+        { "pt": "chegar", "fr": "arriver", "img": "🛬" },
+        { "pt": "partir", "fr": "partir", "img": "🛫" },
+        { "pt": "a fronteira", "fr": "la frontière", "img": "🚧" }
+      ]
+    },
+    {
+      "id": "gastronomia",
+      "name": "Cuisine & Gastronomie",
+      "icon": "👨‍🍳",
+      "color": "#f39c12",
+      "words": [
+        { "pt": "a receita", "fr": "la recette", "img": "📝" },
+        { "pt": "os ingredientes", "fr": "les ingrédients", "img": "🥬" },
+        { "pt": "o tempero", "fr": "l'assaisonnement", "img": "🧂" },
+        { "pt": "a panela", "fr": "la casserole", "img": "🍲" },
+        { "pt": "assar", "fr": "cuire au four", "img": "🔥" },
+        { "pt": "fritar", "fr": "frire", "img": "🍳" },
+        { "pt": "cozinhar", "fr": "cuisiner", "img": "👨‍🍳" },
+        { "pt": "o sabor", "fr": "la saveur", "img": "😋" },
+        { "pt": "doce", "fr": "sucré", "img": "🍬" },
+        { "pt": "salgado", "fr": "salé", "img": "🧂" },
+        { "pt": "picante", "fr": "épicé", "img": "🌶️" },
+        { "pt": "o churrasco", "fr": "le barbecue brésilien", "img": "🥩" },
+        { "pt": "a feijoada", "fr": "la feijoada", "img": "🫘" },
+        { "pt": "o brigadeiro", "fr": "le brigadeiro", "img": "🍫" }
+      ]
+    },
+    {
+      "id": "musique",
+      "name": "Musique & Culture",
+      "icon": "🎵",
+      "color": "#e91e63",
+      "words": [
+        { "pt": "a música", "fr": "la musique", "img": "🎵" },
+        { "pt": "a canção", "fr": "la chanson", "img": "🎤" },
+        { "pt": "o ritmo", "fr": "le rythme", "img": "🥁" },
+        { "pt": "a dança", "fr": "la danse", "img": "💃" },
+        { "pt": "o forró", "fr": "le forró", "img": "🎶" },
+        { "pt": "a samba", "fr": "la samba", "img": "🥁" },
+        { "pt": "o baile", "fr": "le bal", "img": "🎊" },
+        { "pt": "o instrumento", "fr": "l'instrument", "img": "🎸" },
+        { "pt": "a guitarra", "fr": "la guitare électrique", "img": "🎸" },
+        { "pt": "o violão", "fr": "la guitare acoustique", "img": "🎸" },
+        { "pt": "cantar", "fr": "chanter", "img": "🎤" },
+        { "pt": "tocar", "fr": "jouer (d'un instrument)", "img": "🎹" }
+      ]
     }
   ]
 };

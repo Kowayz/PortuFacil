@@ -180,5 +180,110 @@ export const badges = [
     "icon": "🦉",
     "description": "Étudier après 22h pendant 5 jours de suite",
     "condition": "night + streak >= 5"
+  },
+  {
+    "id": "b2_started",
+    "name": "Cap sur le B2",
+    "icon": "🎓",
+    "description": "Commencer une leçon B2",
+    "condition": "b2 lesson started"
+  },
+  {
+    "id": "b2_complete",
+    "name": "Maître du B2",
+    "icon": "🏆",
+    "description": "Compléter 6 leçons B2",
+    "condition": "b2 lessons >= 6"
+  },
+  {
+    "id": "lesson_10",
+    "name": "Bonne lancée",
+    "icon": "📚",
+    "description": "Compléter 10 leçons",
+    "condition": "lessons >= 10"
+  },
+  {
+    "id": "lesson_20",
+    "name": "Déterminé(e)",
+    "icon": "💪",
+    "description": "Compléter 20 leçons",
+    "condition": "lessons >= 20"
+  },
+  {
+    "id": "all_lessons",
+    "name": "Cursus complet",
+    "icon": "🎉",
+    "description": "Compléter toutes les leçons",
+    "condition": "lessons >= 25"
+  },
+  {
+    "id": "words_25",
+    "name": "Premiers pas",
+    "icon": "🌱",
+    "description": "Maîtriser 25 mots",
+    "condition": "mastered words >= 25"
+  },
+  {
+    "id": "words_200",
+    "name": "Grand lexique",
+    "icon": "📖",
+    "description": "Maîtriser 200 mots",
+    "condition": "mastered words >= 200"
+  },
+  {
+    "id": "streak_14",
+    "name": "Deux semaines !",
+    "icon": "🔥",
+    "description": "14 jours de suite",
+    "condition": "streak >= 14"
+  },
+  {
+    "id": "streak_60",
+    "name": "Deux mois de feu",
+    "icon": "🌋",
+    "description": "60 jours de suite",
+    "condition": "streak >= 60"
+  },
+  {
+    "id": "time_30min",
+    "name": "Premier effort",
+    "icon": "⏱️",
+    "description": "30 minutes d'étude",
+    "condition": "totalSeconds >= 1800"
+  },
+  {
+    "id": "time_5h",
+    "name": "Sérieux(se)",
+    "icon": "🕐",
+    "description": "5 heures d'étude",
+    "condition": "totalSeconds >= 18000"
+  },
+  {
+    "id": "time_20h",
+    "name": "Marathonien(ne)",
+    "icon": "⌚",
+    "description": "20 heures d'étude",
+    "condition": "totalSeconds >= 72000"
+  },
+  {
+    "id": "quiz_10",
+    "name": "Quizzeur",
+    "icon": "🎯",
+    "description": "Terminer 10 quiz",
+    "condition": "quizCount >= 10"
+  },
+  {
+    "id": "quiz_srs",
+    "name": "Mémoriste",
+    "icon": "🧠",
+    "description": "Faire 5 révisions SRS",
+    "condition": "srsCount >= 5"
+  },
+  {
+    "id": "xp_500",
+    "name": "Montée en puissance",
+    "icon": "⭐",
+    "description": "Atteindre 500 XP",
+    "condition": "xp >= 500"
   }
 ];

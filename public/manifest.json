@@ -1,0 +1,20 @@
+{
+  "name": "PortuFácil",
+  "short_name": "PortuFácil",
+  "description": "Apprenez le portugais brésilien de A1 à B2",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f4ef",
+  "theme_color": "#1a3a5c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle"],
+  "lang": "fr"
+}
