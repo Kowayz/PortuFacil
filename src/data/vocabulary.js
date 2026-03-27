@@ -1264,7 +1264,16 @@ export const vocabulary = {
         { "pt": "o turista", "fr": "le touriste", "img": "🧳" },
         { "pt": "chegar", "fr": "arriver", "img": "🛬" },
         { "pt": "partir", "fr": "partir", "img": "🛫" },
-        { "pt": "a fronteira", "fr": "la frontière", "img": "🚧" }
+        { "pt": "a fronteira", "fr": "la frontière", "img": "🚧" },
+        { "pt": "o check-in", "fr": "l'enregistrement", "img": "✅" },
+        { "pt": "a bagagem", "fr": "les bagages", "img": "🧳" },
+        { "pt": "a câmbio", "fr": "le change / bureau de change", "img": "💱" },
+        { "pt": "a recepção", "fr": "la réception", "img": "🏨" },
+        { "pt": "a visita guiada", "fr": "la visite guidée", "img": "🗺️" },
+        { "pt": "o seguro de viagem", "fr": "l'assurance voyage", "img": "🛡️" },
+        { "pt": "a escala", "fr": "l'escale", "img": "✈️" },
+        { "pt": "o embarque", "fr": "l'embarquement", "img": "🚀" },
+        { "pt": "o destino", "fr": "la destination", "img": "📍" }
       ]
     },
     {
@@ -1286,7 +1295,12 @@ export const vocabulary = {
         { "pt": "picante", "fr": "épicé", "img": "🌶️" },
         { "pt": "o churrasco", "fr": "le barbecue brésilien", "img": "🥩" },
         { "pt": "a feijoada", "fr": "la feijoada", "img": "🫘" },
-        { "pt": "o brigadeiro", "fr": "le brigadeiro", "img": "🍫" }
+        { "pt": "o brigadeiro", "fr": "le brigadeiro", "img": "🍫" },
+        { "pt": "a manteiga", "fr": "le beurre", "img": "🧈" },
+        { "pt": "o alho", "fr": "l'ail", "img": "🧄" },
+        { "pt": "a cebola", "fr": "l'oignon", "img": "🧅" },
+        { "pt": "o azeite", "fr": "l'huile d'olive", "img": "🫙" },
+        { "pt": "o açúcar", "fr": "le sucre", "img": "🍬" }
       ]
     },
     {

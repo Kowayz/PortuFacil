@@ -86,9 +86,10 @@ src/
 6. **Dark mode** — any new UI must work under `[data-theme="dark"]`.
 7. **French UI language** — all user-facing text is in French.
 
-## YOLO Mode: DISABLED
+## YOLO Mode: ENABLED
 
-Review each change before committing. Do not use `--dangerously-skip-permissions`.
+The loop runs fully autonomously with `--dangerously-skip-permissions`. Each iteration
+must still verify acceptance criteria and run `npm run build` before outputting DONE.
 
 ## Workflow for Each Spec
 

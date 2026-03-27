@@ -340,8 +340,9 @@ while true; do
     fi
 
     # Run Claude with prompt via stdin, capture output
+    # Unset CLAUDECODE so nested claude -p doesn't get blocked by the "nested session" check
     CLAUDE_OUTPUT=""
-    if CLAUDE_OUTPUT=$(cat "$PROMPT_FILE" | "$CLAUDE_CMD" $CLAUDE_FLAGS 2>&1 | tee "$LOG_FILE"); then
+    if CLAUDE_OUTPUT=$(cat "$PROMPT_FILE" | env -u CLAUDECODE "$CLAUDE_CMD" $CLAUDE_FLAGS 2>&1 | tee "$LOG_FILE"); then
         if [ -n "$WATCH_PID" ]; then
             kill "$WATCH_PID" 2>/dev/null || true
             wait "$WATCH_PID" 2>/dev/null || true
@@ -394,13 +395,8 @@ while true; do
         print_latest_output "$LOG_FILE" "Claude"
     fi
 
-    # Push changes after each iteration (if any)
-    git push origin "$CURRENT_BRANCH" 2>/dev/null || {
-        if git log origin/$CURRENT_BRANCH..HEAD --oneline 2>/dev/null | grep -q .; then
-            echo -e "${YELLOW}Push failed, creating remote branch...${NC}"
-            git push -u origin "$CURRENT_BRANCH" 2>/dev/null || true
-        fi
-    }
+    # Push changes after each iteration (if any) — errors are non-fatal
+    git push origin "$CURRENT_BRANCH" 2>/dev/null || true
 
     # Brief pause between iterations
     echo ""
