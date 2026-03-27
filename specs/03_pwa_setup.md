@@ -1,3 +1,5 @@
+## ✅ Status: COMPLÉTÉ — critères vérifiés, commité
+
 # Spec 03 — Progressive Web App (PWA)
 
 ## Priorité : MOYENNE

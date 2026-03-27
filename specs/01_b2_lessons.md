@@ -1,3 +1,5 @@
+## ✅ Status: COMPLÉTÉ — critères vérifiés, commité
+
 # Spec 01 — Leçons niveau B2 (6 leçons)
 
 ## Priorité : HAUTE

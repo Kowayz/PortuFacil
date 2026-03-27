@@ -1,3 +1,5 @@
+## ✅ Status: COMPLÉTÉ — critères vérifiés, commité
+
 # Spec 06 — Expansion de la conjugaison (20 verbes essentiels)
 
 ## Priorité : HAUTE
