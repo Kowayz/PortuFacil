@@ -225,6 +225,21 @@ function showQuizResult() {
   addXP(xpEarned);
   STATE.quizzesCompleted++;
   if (pct === 100) STATE.perfectQuizzes++;
+
+  if (qs.active === 'daily') {
+    const today = new Date().toISOString().slice(0, 10);
+    if (STATE.lastDailyDate !== today) {
+      const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+      STATE.dailyStreak = (STATE.dailyHistory || []).includes(yesterday)
+        ? (STATE.dailyStreak || 0) + 1 : 1;
+      STATE.dailyHistory = [...(STATE.dailyHistory || []).slice(-6), today];
+      STATE.lastDailyDate = today;
+      STATE.xp = (STATE.xp || 0) + 30;
+      saveState();
+      showToast('success', '🎯 Défi quotidien !', `+30 XP bonus ! Série : ${STATE.dailyStreak} jour${STATE.dailyStreak > 1 ? 's' : ''}`);
+    }
+  }
+
   checkBadges();
   saveState();
 

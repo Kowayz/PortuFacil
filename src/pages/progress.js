@@ -36,6 +36,7 @@ export function renderProgress() {
   initLevelTotals();
   renderHero();
   renderActions();
+  renderDailyCalendar();
   renderRoadmap();
   renderWeakSpots();
   renderWeeklyActivity();
@@ -83,6 +84,22 @@ function renderActions() {
   const errorList   = Object.entries(errors).sort((a, b) => b[1].count - a[1].count);
   const nextLesson  = getNextLesson();
   const actions     = [];
+
+  // 0 — Daily challenge (if not done today)
+  const today = new Date().toISOString().slice(0, 10);
+  const dailyDone = STATE.lastDailyDate === today;
+  if (!dailyDone) {
+    actions.push({
+      icon: '🎯', urgent: false,
+      color: 'var(--green)', pale: 'var(--green-pale)',
+      title: 'Défi du jour',
+      desc: STATE.dailyStreak > 0
+        ? `Série en cours : ${STATE.dailyStreak} jour${STATE.dailyStreak > 1 ? 's' : ''} 🔥 — 5 questions, +30 XP bonus !`
+        : 'Relevez 5 questions rapides et gagnez +30 XP bonus. Revenez chaque jour pour garder votre série !',
+      cta: 'Relever le défi',
+      onclick: "navigate('quiz');setTimeout(()=>startQuiz('daily'),50)",
+    });
+  }
 
   // 1 — SRS review (urgent if overdue)
   if (dueWords.length > 0) {
@@ -155,6 +172,27 @@ function renderActions() {
       <button class="pdash-action-cta" style="background:${a.color}">${a.cta} →</button>
     </div>
   `).join('');
+}
+
+// ── Daily challenge calendar ─────────────────────────────────────────────────
+
+function renderDailyCalendar() {
+  const container = document.getElementById('daily-calendar');
+  if (!container) return;
+  const days = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  const today = new Date();
+  const todayStr = today.toISOString().slice(0, 10);
+  container.innerHTML = Array.from({length: 7}, (_, i) => {
+    const d = new Date(today);
+    d.setDate(today.getDate() - (6 - i));
+    const dateStr = d.toISOString().slice(0, 10);
+    const done = (STATE.dailyHistory || []).includes(dateStr);
+    const isToday = dateStr === todayStr;
+    return `<div class="daily-cal-day ${done ? 'done' : ''} ${isToday ? 'today' : ''}">
+      <span class="daily-cal-dot">${done ? '✓' : isToday ? '·' : ''}</span>
+      <span class="daily-cal-label">${days[d.getDay() === 0 ? 6 : d.getDay() - 1]}</span>
+    </div>`;
+  }).join('');
 }
 
 // ── Level roadmap ───────────────────────────────────────────────────────────

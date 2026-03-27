@@ -18,6 +18,9 @@ export const DEFAULT_STATE = {
   seenCulturalFacts: [],
   favorites: [],
   theme: 'light',
+  lastDailyDate: null,
+  dailyStreak: 0,
+  dailyHistory: [],
 };
 
 export let STATE = {};
