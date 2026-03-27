@@ -3583,5 +3583,321 @@ export const lessons = [
       { "type": "mcq", "question": "'Será que ele vem?' signifie :", "options": ["Il vient certainement.", "Il est venu.", "Est-ce qu'il va venir?", "Il ne vient pas."], "correct": 2, "explanation": "Será que...? = Est-ce que... ? / Se pourrait-il que... ? Exprime le doute sur l'avenir." },
       { "type": "cloze", "sentence": "No próximo ano ___ de emprego.", "answer": "mudo/vou mudar", "hint": "je vais changer (mudo ou futur proche)" }
     ]
+  },
+  {
+    "id": "b2-1",
+    "level": "B2",
+    "title": "Le subjonctif présent",
+    "titlePT": "O subjuntivo presente",
+    "icon": "🌀",
+    "description": "Maîtrisez le subjonctif présent en portugais : conjugaisons, irréguliers et emplois.",
+    "xp": 120,
+    "sections": [
+      {
+        "title": "Conjugaison du subjonctif",
+        "content": "Le subjonctif présent (subjuntivo presente) se forme à partir de la 1ère personne du présent de l'indicatif. Pour -AR : radical + -e, -es, -e, -emos, -em. Exemple : falar → eu falo → fale, fales, fale, falemos, falem.",
+        "vocabulary": [
+          { "pt": "fale", "fr": "que je parle (subj.)", "example": "É importante que você fale devagar." },
+          { "pt": "fales", "fr": "que tu parles (subj.)", "example": "Quero que fales com ela." },
+          { "pt": "falemos", "fr": "que nous parlions (subj.)", "example": "Para que falemos melhor, pratiquemos." },
+          { "pt": "a possibilidade", "fr": "la possibilité", "example": "Existe a possibilidade de chover." },
+          { "pt": "o desejo", "fr": "le désir", "example": "É o meu maior desejo." }
+        ]
+      },
+      {
+        "title": "Verbes irréguliers au subjonctif",
+        "content": "Certains verbes ont un subjonctif irrégulier très différent de l'indicatif. À mémoriser absolument : ser → seja, ter → tenha, estar → esteja, ir → vá.",
+        "vocabulary": [
+          { "pt": "seja", "fr": "que ce soit (subj. de ser)", "example": "Quero que isso seja verdade." },
+          { "pt": "tenha", "fr": "qu'il ait (subj. de ter)", "example": "É importante que você tenha paciência." },
+          { "pt": "esteja", "fr": "qu'il soit (subj. de estar)", "example": "Espero que esteja bem." },
+          { "pt": "vá", "fr": "qu'il aille (subj. de ir)", "example": "É melhor que você vá agora." },
+          { "pt": "a necessidade", "fr": "la nécessité", "example": "Há necessidade de mudar." }
+        ]
+      },
+      {
+        "title": "Emplois du subjonctif",
+        "content": "Le subjonctif s'emploie après certaines expressions : quero que (je veux que), é importante que (il est important que), embora (bien que), para que (pour que).",
+        "vocabulary": [
+          { "pt": "quero que", "fr": "je veux que", "example": "Quero que você venha." },
+          { "pt": "é importante que", "fr": "il est important que", "example": "É importante que estudemos." },
+          { "pt": "embora", "fr": "bien que / quoique", "example": "Embora esteja cansado, continuo." },
+          { "pt": "para que", "fr": "pour que / afin que", "example": "Estudo para que possa comunicar." },
+          { "pt": "embora", "fr": "bien que", "example": "Embora seja difícil, é possível." }
+        ]
+      }
+    ],
+    "quiz": [
+      { "type": "mcq", "question": "Quel est le subjonctif de 'falar' pour 'você' ?", "options": ["fala", "fale", "falo", "falará"], "correct": 1, "explanation": "Subjonctif de falar : fale (vous), conjugué à partir de 'falo' → fal- + -e." },
+      { "type": "mcq", "question": "Quel est le subjonctif de 'ser' ?", "options": ["sere", "seje", "seja", "seia"], "correct": 2, "explanation": "Ser est irrégulier au subjonctif : seja, sejas, seja, sejamos, sejam." },
+      { "type": "mcq", "question": "'Embora' déclenche quel mode ?", "options": ["L'indicatif", "Le subjonctif", "L'infinitif", "L'impératif"], "correct": 1, "explanation": "'Embora' (bien que) est une conjonction de concession qui exige le subjonctif." },
+      { "type": "translate", "question": "Traduisez : 'il est important que vous ayez de la patience'", "answer": "é importante que você tenha paciência" },
+      { "type": "translate", "question": "Traduisez : 'je veux que ce soit vrai'", "answer": "quero que seja verdade" }
+    ]
+  },
+  {
+    "id": "b2-2",
+    "level": "B2",
+    "title": "Le futur simple et l'hypothèse",
+    "titlePT": "O futuro simples e a hipótese",
+    "icon": "🔮",
+    "description": "Exprimez l'avenir et les hypothèses avec le futur simple et le conditionnel.",
+    "xp": 120,
+    "sections": [
+      {
+        "title": "Le futur simple",
+        "content": "Le futur simple (futuro do indicativo) se forme avec l'infinitif + terminaisons : -ei, -ás, -á, -emos, -eis, -ão. Exemple : falar → falarei, falará, falaremos.",
+        "vocabulary": [
+          { "pt": "falarei", "fr": "je parlerai", "example": "Amanhã falarei com o chefe." },
+          { "pt": "falará", "fr": "il/elle parlera", "example": "Ela falará na reunião." },
+          { "pt": "falaremos", "fr": "nous parlerons", "example": "Falaremos sobre isso amanhã." },
+          { "pt": "provavelmente", "fr": "probablement", "example": "Provavelmente chegarei tarde." },
+          { "pt": "certamente", "fr": "certainement", "example": "Certamente virás à festa?" }
+        ]
+      },
+      {
+        "title": "Le conditionnel et l'hypothèse",
+        "content": "Pour les hypothèses : 'Se + présent, futur' (hypothèse réelle) ; 'Se + imparfait du subjonctif, conditionnel' (hypothèse irréelle). Exemple : Se estudar, passarei. / Se estudasse, passaria.",
+        "vocabulary": [
+          { "pt": "eu falaria", "fr": "je parlerais", "example": "Eu falaria com ele se tivesse tempo." },
+          { "pt": "você falaria", "fr": "vous parleriez", "example": "Você falaria melhor com prática." },
+          { "pt": "talvez", "fr": "peut-être", "example": "Talvez venha amanhã." },
+          { "pt": "caso", "fr": "au cas où", "example": "Caso precise, ligue-me." },
+          { "pt": "a hipótese", "fr": "l'hypothèse", "example": "Há uma hipótese de mudar de plano." }
+        ]
+      },
+      {
+        "title": "Futur irrégulier et expressions d'avenir",
+        "content": "Quelques futurs irréguliers courants : fazer → farei, trazer → trarei, dizer → direi, poder → poderei, querer → quererei. Expressions utiles pour parler de l'avenir.",
+        "vocabulary": [
+          { "pt": "farei", "fr": "je ferai", "example": "Farei o que for necessário." },
+          { "pt": "direi", "fr": "je dirai", "example": "Direi a verdade amanhã." },
+          { "pt": "Se chover...", "fr": "S'il pleut...", "example": "Se chover, ficarei em casa." },
+          { "pt": "Se eu fosse rico...", "fr": "Si j'étais riche...", "example": "Se eu fosse rico, viajaria o mundo." },
+          { "pt": "com certeza", "fr": "certainement / avec certitude", "example": "Com certeza voltarei." }
+        ]
+      }
+    ],
+    "quiz": [
+      { "type": "mcq", "question": "Quel est le futur de 'falar' pour 'eu' ?", "options": ["falei", "falava", "falarei", "falaria"], "correct": 2, "explanation": "Futur de falar : infinitif + -ei = falarei." },
+      { "type": "mcq", "question": "Quelle structure exprime une hypothèse réelle ?", "options": ["Se + imparfait, conditionnel", "Se + présent, futur", "Se + subjonctif, impératif", "Se + futur, passé"], "correct": 1, "explanation": "'Se chover, ficarei em casa.' = Si + présent indicatif, futur simple. Hypothèse réelle possible." },
+      { "type": "mcq", "question": "'Talvez' déclenche généralement quel mode ?", "options": ["L'indicatif", "L'infinitif", "Le subjonctif", "L'impératif"], "correct": 2, "explanation": "'Talvez' (peut-être) est suivi du subjonctif : Talvez venha amanhã." },
+      { "type": "translate", "question": "Traduisez : 'nous parlerons de ça demain'", "answer": "falaremos sobre isso amanhã" },
+      { "type": "translate", "question": "Traduisez : 'au cas où tu aurais besoin, appelle-moi'", "answer": "caso precise, ligue-me" }
+    ]
+  },
+  {
+    "id": "b2-3",
+    "level": "B2",
+    "title": "Le discours indirect",
+    "titlePT": "O discurso indireto",
+    "icon": "💬",
+    "description": "Rapportez les paroles de quelqu'un avec le discours indirect en portugais.",
+    "xp": 120,
+    "sections": [
+      {
+        "title": "Transformation directe → indirecte",
+        "content": "Pour passer du discours direct au discours indirect, on utilise des verbes introducteurs : disse que (il a dit que), perguntou se (il a demandé si), pediu para (il a demandé de). La ponctuation et les pronoms changent.",
+        "vocabulary": [
+          { "pt": "disse que", "fr": "il/elle a dit que", "example": "Ela disse que estava cansada." },
+          { "pt": "perguntou se", "fr": "il/elle a demandé si", "example": "Ele perguntou se eu tinha fome." },
+          { "pt": "pediu para", "fr": "il/elle a demandé de", "example": "Ela pediu para eu esperar." },
+          { "pt": "afirmar", "fr": "affirmer", "example": "Ele afirmou que sabia a verdade." },
+          { "pt": "declarar", "fr": "déclarer", "example": "A ministra declarou que apoiava o projeto." }
+        ]
+      },
+      {
+        "title": "Concordance des temps et marqueurs",
+        "content": "Au discours indirect, les temps changent : présent → imparfait, futur → conditionnel. Les adverbes aussi changent : aqui → ali, agora → naquele momento, amanhã → no dia seguinte.",
+        "vocabulary": [
+          { "pt": "acrescentar", "fr": "ajouter (en parlant)", "example": "Ele acrescentou que havia mais detalhes." },
+          { "pt": "segundo", "fr": "selon", "example": "Segundo o relatório, os dados estão corretos." },
+          { "pt": "de acordo com", "fr": "selon / conformément à", "example": "De acordo com ela, o projeto é viável." },
+          { "pt": "no dia seguinte", "fr": "le lendemain", "example": "Disse que viria no dia seguinte." },
+          { "pt": "naquele momento", "fr": "à ce moment-là", "example": "Explicou que naquele momento não podia." }
+        ]
+      },
+      {
+        "title": "Pratique du discours rapporté",
+        "content": "Exercez-vous à transformer le discours direct en indirect. N'oubliez pas : aqui → ali (là), agora → então (alors), hoje → naquele dia (ce jour-là).",
+        "vocabulary": [
+          { "pt": "pediu que", "fr": "il/elle a demandé que (subj.)", "example": "Ela pediu que eu viesse logo." },
+          { "pt": "respondeu que", "fr": "il/elle a répondu que", "example": "Ele respondeu que não sabia." },
+          { "pt": "explicou que", "fr": "il/elle a expliqué que", "example": "Ela explicou que era tarde." },
+          { "pt": "naquele dia", "fr": "ce jour-là", "example": "Disse que naquele dia estava ocupada." },
+          { "pt": "então", "fr": "alors / à ce moment-là", "example": "Explicou que então não tinha tempo." }
+        ]
+      }
+    ],
+    "quiz": [
+      { "type": "mcq", "question": "Comment rapporter 'Estou cansado' au discours indirect ?", "options": ["Disse que está cansado", "Disse que estava cansado", "Disse que estarão cansados", "Disse que esteve cansado"], "correct": 1, "explanation": "Au discours indirect, le présent devient imparfait : está → estava." },
+      { "type": "mcq", "question": "Comment rapporter une question oui/non ?", "options": ["avec 'que'", "avec 'se'", "avec 'como'", "avec 'o que'"], "correct": 1, "explanation": "Pour rapporter une question fermée, on utilise 'perguntou se' (il a demandé si)." },
+      { "type": "mcq", "question": "Que signifie 'de acordo com' ?", "options": ["par rapport à", "selon / conformément à", "grâce à", "à cause de"], "correct": 1, "explanation": "'De acordo com' signifie 'selon' ou 'conformément à'. Ex: De acordo com o manual..." },
+      { "type": "translate", "question": "Traduisez : 'elle a dit qu'elle était fatiguée'", "answer": "ela disse que estava cansada" },
+      { "type": "translate", "question": "Traduisez : 'il a demandé si j'avais faim'", "answer": "ele perguntou se eu tinha fome" }
+    ]
+  },
+  {
+    "id": "b2-4",
+    "level": "B2",
+    "title": "Les connecteurs logiques avancés",
+    "titlePT": "Os conectores lógicos avançados",
+    "icon": "🔗",
+    "description": "Enrichissez votre discours avec des connecteurs de cause, concession et conséquence.",
+    "xp": 120,
+    "sections": [
+      {
+        "title": "Cause et concession",
+        "content": "Pour exprimer la cause en style soutenu : visto que, dado que, uma vez que (étant donné que, puisque). Pour la concession : apesar de (malgré), mesmo que / ainda que (même si) + subjonctif.",
+        "vocabulary": [
+          { "pt": "visto que", "fr": "étant donné que / vu que", "example": "Visto que está tarde, vamos embora." },
+          { "pt": "dado que", "fr": "étant donné que", "example": "Dado que não veio, adiamos a reunião." },
+          { "pt": "uma vez que", "fr": "puisque / dès lors que", "example": "Uma vez que concordamos, assinemos." },
+          { "pt": "apesar de", "fr": "malgré / en dépit de", "example": "Apesar do cansaço, continuou." },
+          { "pt": "mesmo que", "fr": "même si (subj.)", "example": "Mesmo que chova, irei." }
+        ]
+      },
+      {
+        "title": "Conséquence et articulation",
+        "content": "Pour exprimer la conséquence : portanto (donc), assim (ainsi), de modo que (de sorte que). Ces connecteurs structurent votre argumentation.",
+        "vocabulary": [
+          { "pt": "ainda que", "fr": "quoique / bien que (subj.)", "example": "Ainda que seja difícil, vale a pena." },
+          { "pt": "portanto", "fr": "donc / par conséquent", "example": "Estudei muito, portanto passei." },
+          { "pt": "logo", "fr": "donc / alors", "example": "Penso, logo existo." },
+          { "pt": "consequentemente", "fr": "par conséquent", "example": "Faltou às aulas, consequentemente reprovou." },
+          { "pt": "no entanto", "fr": "cependant / toutefois", "example": "É difícil, no entanto é possível." }
+        ]
+      },
+      {
+        "title": "Dialogue : Argumentation",
+        "type": "conversation",
+        "setup": "Maria e João debatem sobre uma decisão importante.",
+        "speakers": [
+          { "name": "Maria", "avatar": "👩🏻" },
+          { "name": "João", "avatar": "👨🏽" }
+        ],
+        "lines": [
+          { "speaker": 0, "pt": "Dado que os resultados são positivos, devemos continuar.", "fr": "Étant donné que les résultats sont positifs, nous devons continuer.", "hl": ["Dado que"] },
+          { "speaker": 1, "pt": "No entanto, os custos aumentaram muito.", "fr": "Cependant, les coûts ont beaucoup augmenté.", "hl": ["No entanto"] },
+          { "speaker": 0, "pt": "Mesmo que os custos sejam altos, os benefícios são maiores.", "fr": "Même si les coûts sont élevés, les avantages sont plus grands.", "hl": ["Mesmo que"] },
+          { "speaker": 1, "pt": "Portanto, ___.", "fr": "Donc, ___.", "blank": "concordo", "hl": ["Portanto"] }
+        ],
+        "options": ["concordo", "discordo", "talvez", "nunca"]
+      }
+    ],
+    "quiz": [
+      { "type": "mcq", "question": "Quel connecteur exprime la cause soutenue ?", "options": ["portanto", "no entanto", "visto que", "todavia"], "correct": 2, "explanation": "'Visto que' = étant donné que. Exprime la cause en style formel/soutenu." },
+      { "type": "mcq", "question": "'Mesmo que' est suivi de quel mode ?", "options": ["L'indicatif", "L'infinitif", "Le subjonctif", "Le conditionnel"], "correct": 2, "explanation": "'Mesmo que' (même si) est une conjonction de concession → subjonctif obligatoire." },
+      { "type": "mcq", "question": "Que signifie 'no entanto' ?", "options": ["donc", "puisque", "cependant", "malgré"], "correct": 2, "explanation": "'No entanto' = cependant, toutefois. Connecteur d'opposition/concession." },
+      { "type": "translate", "question": "Traduisez : 'j'ai beaucoup étudié, donc j'ai réussi'", "answer": "estudei muito, portanto passei" },
+      { "type": "translate", "question": "Traduisez : 'même si c'est difficile, ça vaut la peine'", "answer": "mesmo que seja difícil, vale a pena" }
+    ]
+  },
+  {
+    "id": "b2-5",
+    "level": "B2",
+    "title": "Vocabulaire académique et professionnel",
+    "titlePT": "Vocabulário académico e profissional",
+    "icon": "💼",
+    "description": "Maîtrisez le vocabulaire du monde du travail, des études et la communication formelle.",
+    "xp": 120,
+    "sections": [
+      {
+        "title": "Le monde du travail",
+        "content": "Vocabulaire essentiel pour les contextes professionnels et académiques au Brésil et au Portugal.",
+        "vocabulary": [
+          { "pt": "a candidatura", "fr": "la candidature / la candidacy", "example": "Enviei a minha candidatura ontem." },
+          { "pt": "o currículo", "fr": "le CV / le curriculum vitae", "example": "O meu currículo está atualizado." },
+          { "pt": "a entrevista", "fr": "l'entretien / l'interview", "example": "Tenho uma entrevista de emprego amanhã." },
+          { "pt": "o contrato", "fr": "le contrat", "example": "Assinei o contrato de trabalho." },
+          { "pt": "a empresa", "fr": "l'entreprise / la société", "example": "Esta empresa tem 500 funcionários." }
+        ]
+      },
+      {
+        "title": "Organisation et communication formelle",
+        "content": "Pour les e-mails professionnels et les situations formelles : Venho por meio desta (Je vous contacte par ce biais), Atenciosamente (Cordialement), Aguardo retorno (Dans l'attente de votre réponse).",
+        "vocabulary": [
+          { "pt": "o prazo", "fr": "le délai / l'échéance", "example": "O prazo para entregar é sexta-feira." },
+          { "pt": "a reunião", "fr": "la réunion", "example": "A reunião começa às 9h." },
+          { "pt": "o relatório", "fr": "le rapport", "example": "Preciso de entregar o relatório hoje." },
+          { "pt": "Atenciosamente", "fr": "Cordialement (clôture e-mail)", "example": "Atenciosamente, João Silva." },
+          { "pt": "Aguardo retorno", "fr": "Dans l'attente de votre réponse", "example": "Aguardo retorno assim que possível." }
+        ]
+      },
+      {
+        "title": "Expressions formelles et e-mail professionnel",
+        "content": "En contexte professionnel, utilisez des formules de politesse précises. 'Venho por meio desta' ouvre formellement un e-mail. 'Em anexo' (ci-joint) et 'conforme combinado' (comme convenu) sont très utiles.",
+        "vocabulary": [
+          { "pt": "Venho por meio desta", "fr": "Je vous contacte par ce biais (formule d'ouverture)", "example": "Venho por meio desta solicitar uma reunião." },
+          { "pt": "em anexo", "fr": "en pièce jointe / ci-joint", "example": "Segue em anexo o relatório solicitado." },
+          { "pt": "conforme combinado", "fr": "comme convenu", "example": "Conforme combinado, envio os documentos." },
+          { "pt": "o funcionário", "fr": "l'employé", "example": "Os funcionários trabalharam muito este mês." },
+          { "pt": "a proposta", "fr": "la proposition / l'offre", "example": "Analisámos a proposta com cuidado." }
+        ]
+      }
+    ],
+    "quiz": [
+      { "type": "mcq", "question": "Comment dit-on 'le CV' en portugais ?", "options": ["a candidatura", "o currículo", "o relatório", "o contrato"], "correct": 1, "explanation": "'O currículo' = le CV (curriculum vitae). 'A candidatura' = la candidature." },
+      { "type": "mcq", "question": "Que signifie 'Aguardo retorno' dans un e-mail ?", "options": ["J'attends votre appel", "Dans l'attente de votre réponse", "Merci de votre confiance", "Cordialement"], "correct": 1, "explanation": "'Aguardo retorno' (j'attends un retour) = Dans l'attente de votre réponse. Formule de clôture d'e-mail." },
+      { "type": "mcq", "question": "Quel mot signifie 'le délai' ?", "options": ["a reunião", "o prazo", "a empresa", "o contrato"], "correct": 1, "explanation": "'O prazo' = le délai, l'échéance. Ex: O prazo é amanhã." },
+      { "type": "translate", "question": "Traduisez : 'j'ai signé le contrat de travail'", "answer": "assinei o contrato de trabalho" },
+      { "type": "translate", "question": "Traduisez : 'la réunion commence à 9h'", "answer": "a reunião começa às 9h" }
+    ]
+  },
+  {
+    "id": "b2-6",
+    "level": "B2",
+    "title": "Expressions idiomatiques brésiliennes",
+    "titlePT": "Expressões idiomáticas brasileiras",
+    "icon": "🇧🇷",
+    "description": "Parlez comme un Brésilien avec les expressions idiomatiques et les registres de langue.",
+    "xp": 120,
+    "sections": [
+      {
+        "title": "Expressions du quotidien brésilien",
+        "content": "Les Brésiliens utilisent de nombreuses expressions colorées dans la vie quotidienne. Ces tournures informelles sont essentielles pour comprendre la langue parlée.",
+        "vocabulary": [
+          { "pt": "não é para menos", "fr": "c'est bien normal / pas étonnant", "example": "Ele ganhou o prêmio — não é para menos, trabalhou muito!" },
+          { "pt": "deixa pra lá", "fr": "laisse tomber / n'y pense plus", "example": "Deixa pra lá, não vale a pena discutir." },
+          { "pt": "que saudade!", "fr": "comme tu m'as manqué ! / comme ça me manque !", "example": "Que saudade! Faz tanto tempo que não nos vemos!" },
+          { "pt": "com certeza", "fr": "bien sûr / certainement", "example": "— Vai à festa? — Com certeza!" },
+          { "pt": "a gente", "fr": "on / nous (informel)", "example": "A gente vai ao cinema hoje?" }
+        ]
+      },
+      {
+        "title": "Argot et registres de langue",
+        "content": "Le portugais brésilien parlé est très différent du portugais écrit formel. 'Tá bom', 'de boa', 'vai dar certo' sont des expressions typiques du Brésil quotidien.",
+        "vocabulary": [
+          { "pt": "tá bom", "fr": "d'accord / OK", "example": "— Às 8h? — Tá bom!" },
+          { "pt": "de boa", "fr": "tranquille / cool / sans problème", "example": "Tudo de boa por aqui." },
+          { "pt": "vai dar certo", "fr": "ça va marcher / tout ira bien", "example": "Não se preocupe, vai dar certo!" },
+          { "pt": "formal: Está bem", "fr": "d'accord (formel)", "example": "Está bem, conforme combinado." },
+          { "pt": "formal: Certamente", "fr": "certainement (formel)", "example": "Certamente comparecerei à reunião." }
+        ]
+      },
+      {
+        "title": "Dialogue : Entre amis brésiliens",
+        "type": "conversation",
+        "setup": "Lucas retrouve sa vieille amie Carla après plusieurs mois.",
+        "speakers": [
+          { "name": "Lucas", "avatar": "👨🏻" },
+          { "name": "Carla", "avatar": "👩🏽" }
+        ],
+        "lines": [
+          { "speaker": 0, "pt": "Carla! Que saudade! Como você está?", "fr": "Carla ! Comme tu m'as manqué ! Comment tu vas ?", "hl": ["Que saudade"] },
+          { "speaker": 1, "pt": "Tudo de boa! E você?", "fr": "Tout va bien, tranquille ! Et toi ?", "hl": ["Tudo de boa"] },
+          { "speaker": 0, "pt": "Também! A gente vai tomar um café?", "fr": "Pareil ! On va prendre un café ?", "hl": ["A gente"] },
+          { "speaker": 1, "pt": "Com certeza! ___!", "fr": "Bien sûr ! ___ !", "blank": "vai dar certo", "hl": ["Com certeza"] }
+        ],
+        "options": ["vai dar certo", "deixa pra lá", "não é para menos", "tá ruim"]
+      }
+    ],
+    "quiz": [
+      { "type": "mcq", "question": "Que signifie 'deixa pra lá' ?", "options": ["C'est bien normal", "Laisse tomber", "Comme tu m'as manqué", "Bien sûr"], "correct": 1, "explanation": "'Deixa pra lá' = laisse tomber, n'y pense plus. Expression très fréquente en langage informel." },
+      { "type": "mcq", "question": "Comment dit 'on / nous' de façon informelle en brésilien ?", "options": ["nós", "vocês", "a gente", "eles"], "correct": 2, "explanation": "'A gente' remplace 'nós' dans la langue parlée brésilienne. Très courant !" },
+      { "type": "mcq", "question": "Quel est l'équivalent formel de 'tá bom' ?", "options": ["de boa", "vai dar certo", "que saudade", "Está bem"], "correct": 3, "explanation": "'Tá bom' (informel) = 'Está bem' (formel). Le 'tá' est une contraction de 'está'." },
+      { "type": "translate", "question": "Traduisez (informel) : 'tout ira bien'", "answer": "vai dar certo" },
+      { "type": "translate", "question": "Traduisez : 'laisse tomber, ça ne vaut pas la peine de discuter'", "answer": "deixa pra lá, não vale a pena discutir" }
+    ]
   }
 ];

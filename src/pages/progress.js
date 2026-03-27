@@ -17,9 +17,11 @@ function initLevelTotals() {
 function getNextLesson() {
   const a1Done = STATE.completedLessons.filter(id => id.startsWith('a1-')).length;
   const a2Done = STATE.completedLessons.filter(id => id.startsWith('a2-')).length;
+  const b1Done = STATE.completedLessons.filter(id => id.startsWith('b1-')).length;
   const unlocked = ['A1'];
   if (a1Done >= 5) unlocked.push('A2');
   if (a2Done >= 7) unlocked.push('B1');
+  if (b1Done >= 5) unlocked.push('B2');
   for (const lvl of unlocked) {
     const next = DATA.lessons.filter(l => l.level === lvl)
       .find(l => !STATE.completedLessons.includes(l.id));
@@ -163,14 +165,15 @@ function renderRoadmap() {
 
   const a1Done = STATE.completedLessons.filter(id => id.startsWith('a1-')).length;
   const a2Done = STATE.completedLessons.filter(id => id.startsWith('a2-')).length;
+  const b1Done = STATE.completedLessons.filter(id => id.startsWith('b1-')).length;
 
   const levelColors = { A1: 'var(--green)', A2: 'var(--blue)', B1: 'var(--ochre)', B2: 'var(--red)' };
-  const isUnlocked  = { A1: true, A2: a1Done >= 5, B1: a2Done >= 7, B2: false };
+  const isUnlocked  = { A1: true, A2: a1Done >= 5, B1: a2Done >= 7, B2: b1Done >= 5 };
 
   const unlockProgress = {
     A2: { cur: a1Done, max: 5,  text: `${a1Done}/5 leçons A1 complétées` },
     B1: { cur: a2Done, max: 7,  text: `${a2Done}/7 leçons A2 complétées` },
-    B2: { cur: 0,      max: 0,  text: 'Bientôt disponible' },
+    B2: { cur: b1Done, max: 5,  text: `${b1Done}/5 leçons B1 complétées` },
   };
 
   container.innerHTML = ['A1','A2','B1','B2'].map(lvl => {
@@ -183,10 +186,7 @@ function renderRoadmap() {
 
     let statusBadge, barHtml, actionHtml = '';
 
-    if (lvl === 'B2') {
-      statusBadge = `<span class="pdash-road-tag pdash-road-soon">Bientôt</span>`;
-      barHtml = '';
-    } else if (!unlocked) {
+    if (!unlocked) {
       const up  = unlockProgress[lvl];
       const pUp = up.max > 0 ? Math.round((up.cur / up.max) * 100) : 0;
       statusBadge = `<span class="pdash-road-tag pdash-road-locked">🔒 Verrouillé</span>`;
