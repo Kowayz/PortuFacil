@@ -62,18 +62,94 @@ function renderRegularVerbGroups() {
   `;
 }
 
+// Resolve a verb from either essential list or verbs array.
+// Returns a normalized object with { name, meaning, irregular, tenses: { presente, ... } }
+function resolveVerb(verbName) {
+  const essential = DATA.conjugation.essential.find(v => v.verb === verbName);
+  if (essential) return essential;
+  const entry = (DATA.conjugation.verbs || []).find(v => v.infinitive === verbName);
+  if (entry) {
+    return {
+      verb: entry.infinitive,
+      meaning: entry.translation,
+      irregular: entry.type === 'irregular',
+      tenses: {
+        presente: entry.presente,
+        preteritoPerfeito: entry.preteritoPerfeito,
+        preteritoImperfeito: entry.preteritoImperfeito,
+        futuro: entry.futuro,
+      },
+    };
+  }
+  return null;
+}
+
 export function searchVerb(verb) {
   if (!verb) return;
-  const found = DATA.conjugation.essential.find(v => v.verb === verb);
+  const found = resolveVerb(verb);
   if (found) {
     showVerbConjugation(found.verb);
   } else {
-    showToast('warning', '🔍 Verbe introuvable', 'Essayez : ser, estar, ter, ir, fazer, poder, querer, dizer');
+    // Fall back to regular group if verb ends in -ar/-er/-ir
+    const suffix = verb.slice(-2);
+    if (['ar', 'er', 'ir'].includes(suffix)) {
+      const group = DATA.conjugation.regular[suffix];
+      if (group) {
+        showRegularGroupConjugation(verb, suffix, group);
+        return;
+      }
+    }
+    showToast('warning', '🔍 Verbe introuvable', 'Essayez : falar, ser, estar, ter, ir, fazer, poder, querer...');
   }
 }
 
+function showRegularGroupConjugation(verbName, suffix, group) {
+  const result = document.getElementById('conjugation-result');
+  result.classList.add('show');
+  result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const tenseNames = { presente: 'Présent', preteritoPerfeito: 'Passé simple', preteritoImperfeito: 'Imparfait', futuro: 'Futur' };
+  const tenseKeys = ['presente', 'preteritoPerfeito', 'preteritoImperfeito', 'futuro'];
+  result.innerHTML = `
+    <div class="conjugation-verb-header">
+      <div class="conjugation-verb-name">${verbName}</div>
+      <div class="conjugation-verb-meaning">Verbe régulier -${suffix.toUpperCase()}</div>
+    </div>
+    <div class="tense-tabs">
+      ${tenseKeys.map(t => `
+        <button class="tense-tab ${t === currentTense ? 'active' : ''}" onclick="switchTense('${verbName}', '${t}')">
+          ${tenseNames[t]}
+        </button>
+      `).join('')}
+    </div>
+    <div id="tense-table-container">${renderRegularGroupTable(verbName, suffix, group, currentTense)}</div>
+  `;
+}
+
+function renderRegularGroupTable(verbName, suffix, group, tense) {
+  const tenseNames = { presente: 'Présent', preteritoPerfeito: 'Passé simple', preteritoImperfeito: 'Imparfait', futuro: 'Futur' };
+  const conjugations = group.tenses[tense];
+  if (!conjugations) return '';
+  const pronouns = Object.keys(conjugations);
+  return `
+    <div class="conj-table">
+      <table>
+        <thead><tr><th>Pronom</th><th>${tenseNames[tense] || tense}</th></tr></thead>
+        <tbody>
+          ${pronouns.map(p => `
+            <tr>
+              <td class="conj-pronoun">${p}</td>
+              <td class="conj-form">${conjugations[p]}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="lesson-section-text" style="margin-top:16px">💡 Formes basées sur le modèle régulier -${suffix.toUpperCase()}. Remplacez le radical de <em>${verbName}</em> selon ces terminaisons.</div>
+  `;
+}
+
 export function showVerbConjugation(verbName) {
-  const verb = DATA.conjugation.essential.find(v => v.verb === verbName);
+  const verb = resolveVerb(verbName);
   if (!verb) return;
   const result = document.getElementById('conjugation-result');
   result.classList.add('show');
@@ -109,8 +185,8 @@ export function switchTense(verbName, tense) {
   });
   const container = document.getElementById('tense-table-container');
   if (container) {
-    const verb = DATA.conjugation.essential.find(v => v.verb === verbName);
-    container.innerHTML = renderTenseTable(verb, tense);
+    const verb = resolveVerb(verbName);
+    if (verb) container.innerHTML = renderTenseTable(verb, tense);
   }
 }
 
@@ -131,6 +207,8 @@ function renderTenseTable(verb, tense) {
     poder:  { presente: 'Eu posso ajudar.', preteritoPerfeito: 'Eu pude vir.', preteritoImperfeito: 'Eu podia nadar.', futuro: 'Eu poderei participar.' },
     querer: { presente: 'Eu quero aprender.', preteritoPerfeito: 'Eu quis ficar.', preteritoImperfeito: 'Eu queria ser feliz.', futuro: 'Eu quererei viajar.' },
     dizer:  { presente: 'Eu digo a verdade.', preteritoPerfeito: 'Eu disse tudo.', preteritoImperfeito: 'Eu dizia sempre.', futuro: 'Eu direi obrigado.' },
+    falar:  { presente: 'Eu falo português.', preteritoPerfeito: 'Eu falei com ele.', preteritoImperfeito: 'Eu falava rápido.', futuro: 'Eu falarei amanhã.' },
+    comer:  { presente: 'Eu como fruta.', preteritoPerfeito: 'Eu comi bem.', preteritoImperfeito: 'Eu comia pouco.', futuro: 'Eu comerei lá.' },
   };
   const example = exampleSentences[verb.verb]?.[tense] || '';
   return `
