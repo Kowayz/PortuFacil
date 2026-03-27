@@ -68,7 +68,7 @@ const LEVEL_UNLOCK = {
   A1: () => true,
   A2: () => DATA.lessons.filter(l => l.level === 'A1' && STATE.completedLessons.includes(l.id)).length >= 5,
   B1: () => DATA.lessons.filter(l => l.level === 'A2' && STATE.completedLessons.includes(l.id)).length >= 7,
-  B2: () => false,
+  B2: () => DATA.lessons.filter(l => l.level === 'B1' && STATE.completedLessons.includes(l.id)).length >= 5,
 };
 
 // ── Main renderer ─────────────────────────────────────────────────────────────
@@ -87,7 +87,7 @@ export function renderLessons() {
   const levelUnlockHints = {
     A2: 'Complétez 5 leçons A1 (≥70%) pour débloquer',
     B1: 'Complétez 7 leçons A2 (≥70%) pour débloquer',
-    B2: 'Bientôt disponible !',
+    B2: 'Complétez 5 leçons B1 (≥70%) pour débloquer',
   };
 
   let html = '';
@@ -99,7 +99,7 @@ export function renderLessons() {
 }
 
 function findNextLesson() {
-  for (const lvl of ['A1', 'A2', 'B1']) {
+  for (const lvl of ['A1', 'A2', 'B1', 'B2']) {
     if (!LEVEL_UNLOCK[lvl]()) continue;
     const next = DATA.lessons.filter(l => l.level === lvl).find(l => !STATE.completedLessons.includes(l.id));
     if (next) return next;
