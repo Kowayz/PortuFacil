@@ -1,5 +1,3 @@
-## ✅ Status: COMPLÉTÉ — critères vérifiés, commité
-
 # Spec 02 — Expansion du vocabulaire (5 nouvelles catégories)
 
 ## Priorité : MOYENNE

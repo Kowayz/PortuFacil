@@ -1,5 +1,3 @@
-## ✅ Status: COMPLÉTÉ — critères vérifiés, commité
-
 # Spec 04 — Nouveaux badges (15 achievements)
 
 ## Priorité : BASSE

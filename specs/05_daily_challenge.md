@@ -1,5 +1,3 @@
-## ✅ Status: COMPLÉTÉ — critères vérifiés, commité
-
 # Spec 05 — Défi Quotidien
 
 ## Priorité : HAUTE
