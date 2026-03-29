@@ -20,6 +20,9 @@ export function checkBadges() {
   const b2Done = STATE.completedLessons.filter(id => id.startsWith('b2-')).length;
   const masteredCount = Object.values(STATE.learnedWords).filter(w => w?.status === 'mastered').length;
 
+  const h = new Date().getHours();
+  const comboMax = STATE.comboMax || 0;
+
   const badgeConditions = {
     first_word:      learnedCount >= 1,
     ten_words:       learnedCount >= 10,
@@ -40,9 +43,9 @@ export function checkBadges() {
     all_correct:     STATE.perfectQuizzes >= 3,
     ser_estar:       STATE.completedLessons.includes('a1-7'),
     culturalist:     STATE.culturalFactsSeen >= 5,
-    early_bird:      new Date().getHours() < 8,
-    night_owl:       new Date().getHours() >= 22,
-    night_study:     new Date().getHours() >= 22 && STATE.streak >= 5,
+    early_bird:      h < 8,
+    night_owl:       h >= 22,
+    night_study:     h >= 22 && STATE.streak >= 5,
     vocab_traveller: voyageCat && voyageWords >= voyageTotal,
     week_warrior:    activeAllWeek,
     srs_streak_7:    dueWords.length === 0 && STATE.streak >= 7,
@@ -62,6 +65,15 @@ export function checkBadges() {
     quiz_10:         (STATE.quizCount || 0) >= 10,
     quiz_srs:        (STATE.srsCount || 0) >= 5,
     xp_500:          STATE.xp >= 500,
+    // Badges secrets
+    speed_3:         comboMax >= 3,
+    night_study_secret: h >= 22 && STATE.completedLessons.length >= 1,
+    perfect_5_secret: STATE.perfectQuizzes >= 5,
+    boss_slayer:     (STATE.completedBosses || []).length >= 1,
+    immersed:        (STATE.immersionSessions || 0) >= 3,
+    linguist_100:    learnedCount >= 100,
+    comeback:        STATE.streak >= 1 && (STATE.lastStreak || 0) >= 3,
+    goal_7:          (STATE.goalStreak || 0) >= 7,
   };
 
   const newBadges = [];

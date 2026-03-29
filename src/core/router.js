@@ -5,6 +5,8 @@ let _pageStartTime = Date.now();
 
 // Registry populated by main.js — avoids circular imports with page modules.
 const _pageRenderers = {};
+let _updateNavActive = null;
+export function registerNavActiveCallback(fn) { _updateNavActive = fn; }
 
 export function registerPageRenderer(name, fn) {
   _pageRenderers[name] = fn;
@@ -25,10 +27,9 @@ export function navigate(page) {
   }
 
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.s-link, .bn-link').forEach(l => l.classList.remove('active'));
   const el = document.getElementById('page-' + page);
   if (el) el.classList.add('active');
-  document.querySelectorAll(`.s-link[data-page="${page}"], .bn-link[data-page="${page}"]`).forEach(l => l.classList.add('active'));
+  if (_updateNavActive) _updateNavActive(page);
   currentPage = page;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 

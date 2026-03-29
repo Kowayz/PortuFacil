@@ -265,3 +265,260 @@
 .verb-group-row:last-child { border-bottom: none; }
 .vg-pronoun { color: var(--text-light); }
 .vg-ending { font-weight: 700; color: var(--text-dark); }
+
+/* ============================
+   GRAMMAR REFERENCE PAGE
+   ============================ */
+
+/* Quick nav pills */
+.grammar-quicknav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.grammar-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2.5px solid transparent;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+.grammar-pill-blue  { background: var(--blue-pale); color: var(--blue); border-color: rgba(42,82,152,0.2); box-shadow: 0 3px 0 rgba(42,82,152,0.15); }
+.grammar-pill-ochre { background: rgba(232,168,56,0.15); color: #9A6E00; border-color: rgba(232,168,56,0.3); box-shadow: 0 3px 0 rgba(232,168,56,0.15); }
+.grammar-pill-green { background: var(--green-pale); color: var(--green); border-color: rgba(42,122,64,0.2); box-shadow: 0 3px 0 rgba(42,122,64,0.15); }
+.grammar-pill:hover  { transform: translateY(-2px); }
+.grammar-pill:active { transform: translateY(1px); box-shadow: none; }
+
+[data-theme="dark"] .grammar-pill-blue  { background: rgba(42,82,152,0.2); color: #7B9FD4; border-color: rgba(42,82,152,0.3); }
+[data-theme="dark"] .grammar-pill-ochre { background: rgba(232,168,56,0.15); color: var(--ochre-light); border-color: rgba(232,168,56,0.25); }
+[data-theme="dark"] .grammar-pill-green { background: rgba(42,122,64,0.2); color: #6BBF8A; border-color: rgba(42,122,64,0.3); }
+
+/* Grid layout */
+.grammar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  gap: 24px;
+}
+
+/* Cards */
+.grammar-card {
+  background: var(--white);
+  border-radius: var(--clay-radius);
+  border: var(--clay-border);
+  box-shadow: var(--clay-shadow);
+  overflow: hidden;
+  scroll-margin-top: 80px;
+}
+
+.grammar-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 2px solid var(--cream-dark);
+}
+
+.grammar-card-blue  .grammar-card-header { background: var(--blue-pale); }
+.grammar-card-ochre .grammar-card-header { background: rgba(232,168,56,0.12); }
+.grammar-card-green .grammar-card-header { background: var(--green-pale); }
+
+.grammar-card-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.grammar-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+.grammar-card-blue  .grammar-card-title { color: var(--blue); }
+.grammar-card-ochre .grammar-card-title { color: #9A6E00; }
+.grammar-card-green .grammar-card-title { color: var(--green); }
+
+.grammar-card-body {
+  padding: 20px 24px;
+}
+
+[data-theme="dark"] .grammar-card { background: var(--dark-card); border-color: var(--dark-border); }
+[data-theme="dark"] .grammar-card-header { border-color: var(--dark-border); }
+[data-theme="dark"] .grammar-card-blue  .grammar-card-header { background: rgba(42,82,152,0.2); }
+[data-theme="dark"] .grammar-card-ochre .grammar-card-header { background: rgba(232,168,56,0.12); }
+[data-theme="dark"] .grammar-card-green .grammar-card-header { background: rgba(42,122,64,0.15); }
+[data-theme="dark"] .grammar-card-blue  .grammar-card-title { color: #7B9FD4; }
+[data-theme="dark"] .grammar-card-ochre .grammar-card-title { color: var(--ochre-light); }
+[data-theme="dark"] .grammar-card-green .grammar-card-title { color: #6BBF8A; }
+
+/* Tables */
+.grammar-table-wrap { overflow-x: auto; }
+.grammar-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 320px; }
+.grammar-table th {
+  background: var(--blue); color: white;
+  padding: 9px 14px; text-align: left;
+  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.grammar-table th:first-child { border-radius: 8px 0 0 0; }
+.grammar-table th:last-child  { border-radius: 0 8px 0 0; }
+.grammar-table td { padding: 10px 14px; border-bottom: 1px solid var(--cream-dark); color: var(--text-dark); }
+.grammar-table tr:last-child td { border-bottom: none; }
+.grammar-table tr:hover td { background: var(--cream); }
+
+[data-theme="dark"] .grammar-table th { background: var(--blue); }
+[data-theme="dark"] .grammar-table td { border-color: var(--dark-border); color: var(--text-dark); }
+[data-theme="dark"] .grammar-table tr:hover td { background: rgba(255,255,255,0.05); }
+
+/* Chips */
+.grammar-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.grammar-chip {
+  background: var(--cream);
+  border: 1.5px solid rgba(42,82,152,0.1);
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-size: 0.875rem;
+}
+.grammar-chip strong { color: var(--blue); }
+[data-theme="dark"] .grammar-chip { background: rgba(255,255,255,0.07); border-color: var(--dark-border); }
+[data-theme="dark"] .grammar-chip strong { color: #7B9FD4; }
+
+/* SER vs ESTAR */
+.grammar-ser-estar {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+.grammar-se-col {
+  flex: 1;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.grammar-se-ser   { background: var(--blue-pale); }
+.grammar-se-estar { background: var(--green-pale); }
+.grammar-se-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.grammar-se-ser   .grammar-se-label { color: var(--blue); }
+.grammar-se-estar .grammar-se-label { color: var(--green); }
+.grammar-se-desc  { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; }
+.grammar-se-example { font-size: 0.9rem; font-style: italic; color: var(--text-dark); }
+.grammar-se-conj { font-size: 0.78rem; color: var(--text-light); font-weight: 600; letter-spacing: 0.02em; }
+.grammar-se-vs {
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--ochre); font-size: 0.9rem;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .grammar-se-ser   { background: rgba(42,82,152,0.2); }
+[data-theme="dark"] .grammar-se-estar { background: rgba(42,122,64,0.2); }
+
+/* Contractions */
+.grammar-contractions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.grammar-contr-group { display: flex; flex-direction: column; gap: 6px; }
+.grammar-contr-prep {
+  font-weight: 700; font-size: 0.8rem; color: var(--text-light);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;
+}
+.grammar-contr-items { display: flex; flex-direction: column; gap: 4px; }
+.grammar-contr-item {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--cream); border-radius: 8px; padding: 6px 10px;
+  font-size: 0.875rem;
+}
+.grammar-contr-from { color: var(--text-mid); }
+.grammar-contr-arrow { color: var(--ochre); font-weight: 700; }
+.grammar-contr-to { font-weight: 700; color: var(--blue); }
+[data-theme="dark"] .grammar-contr-item { background: rgba(255,255,255,0.07); }
+[data-theme="dark"] .grammar-contr-to { color: #7B9FD4; }
+
+/* Tenses */
+.grammar-tenses { display: flex; flex-direction: column; gap: 10px; }
+.grammar-tense {
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px 16px;
+  align-items: center;
+}
+.grammar-tense-blue  { background: var(--blue-pale); }
+.grammar-tense-ochre { background: rgba(232,168,56,0.12); }
+.grammar-tense-green { background: var(--green-pale); }
+.grammar-tense-name {
+  font-weight: 700; font-size: 0.9rem;
+  grid-row: 1; grid-column: 1;
+}
+.grammar-tense-blue  .grammar-tense-name { color: var(--blue); }
+.grammar-tense-ochre .grammar-tense-name { color: #9A6E00; }
+.grammar-tense-green .grammar-tense-name { color: var(--green); }
+.grammar-tense-ex {
+  font-style: italic; font-size: 0.8rem; color: var(--text-mid);
+  grid-row: 2; grid-column: 1;
+}
+.grammar-tense-desc {
+  font-size: 0.85rem; color: var(--text-dark);
+  grid-row: 1 / 3; grid-column: 2;
+  align-self: center;
+}
+[data-theme="dark"] .grammar-tense-blue  { background: rgba(42,82,152,0.2); }
+[data-theme="dark"] .grammar-tense-ochre { background: rgba(232,168,56,0.1); }
+[data-theme="dark"] .grammar-tense-green { background: rgba(42,122,64,0.2); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grammar-grid { grid-template-columns: 1fr; }
+  .grammar-ser-estar { flex-direction: column; }
+  .grammar-se-vs { padding: 4px 0; }
+  .grammar-tense { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
+  .grammar-tense-desc { grid-row: auto; grid-column: auto; }
+  .grammar-tense-ex   { grid-row: auto; grid-column: auto; }
+}
+
+/* Audio Interactivity */
+.grammar-audio-word {
+  cursor: pointer;
+  color: inherit;
+  transition: background 0.15s, opacity 0.15s, transform 0.1s;
+  padding: 0 4px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: -2px 0;
+}
+
+.grammar-audio-word:hover {
+  background: rgba(42,82,152,0.15);
+  transform: scale(1.02);
+}
+
+.grammar-audio-word:active {
+  transform: scale(0.98);
+}
+
+[data-theme="dark"] .grammar-audio-word:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.highlighter {
+  font-weight: 700;
+  background: rgba(232,168,56,0.2) !important;
+  color: var(--ochre) !important;
+}
+
+[data-theme="dark"] .highlighter {
+  background: rgba(232,168,56,0.15) !important;
+  color: var(--ochre-light) !important;
+}

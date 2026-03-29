@@ -24,7 +24,12 @@ export function renderConjugation() {
 function renderEssentialVerbs() {
   const container = document.getElementById('essential-verbs-container');
   if (!container) return;
-  container.innerHTML = DATA.conjugation.essential.map(v => `
+  const essentialIds = new Set(DATA.conjugation.essential.map(v => v.verb));
+  const fromVerbs = (DATA.conjugation.verbs || [])
+    .filter(v => !essentialIds.has(v.infinitive))
+    .map(v => ({ verb: v.infinitive, meaning: v.translation, irregular: v.type === 'irregular' }));
+  const all = [...DATA.conjugation.essential, ...fromVerbs];
+  container.innerHTML = all.map(v => `
     <div class="essential-verb-card" onclick="showVerbConjugation('${v.verb}')">
       <div class="essential-verb-name">${v.verb}</div>
       <div class="essential-verb-meaning">${v.meaning}</div>

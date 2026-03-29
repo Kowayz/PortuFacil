@@ -3,7 +3,7 @@
 /* ============================
    CONTAINER
    ============================ */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
 
 /* ============================
    PAGES
@@ -41,8 +41,9 @@
 /* Page-level header cards */
 .vocab-page-header {
   background: linear-gradient(135deg, var(--green), var(--green-light));
-  border-radius: var(--radius-lg);
+  border-radius: var(--clay-radius);
   padding: 36px;
   color: var(--white);
   margin-bottom: 32px;
+  box-shadow: 0 5px 0 rgba(74,124,89,0.25), 0 2px 16px rgba(74,124,89,0.15);
 }

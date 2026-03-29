@@ -48,60 +48,40 @@
   <!-- APP SHELL -->
   <div class="app-shell">
 
-    <!-- Sidebar overlay (mobile) -->
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-logo" onclick="navigate('home')" style="cursor:pointer">
-        <img class="sidebar-logo-img" src="https://flagcdn.com/w80/pt.png" alt="PT" />
+    <!-- TOP NAV -->
+    <header class="topnav" id="topnav">
+      <div class="topnav-logo" onclick="navigate('progress')" style="cursor:pointer">
+        <img src="https://flagcdn.com/w80/pt.png" alt="PT" width="28" height="28" style="border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.2);object-fit:cover;" />
         <span>PortuFácil</span>
       </div>
-
-      <nav class="sidebar-nav">
-        <button class="s-link" data-page="progress"><span class="s-icon">🏠</span><span class="s-label">Accueil</span></button>
-        <div class="s-sep"></div>
-        <div class="s-section-label">Apprendre</div>
-        <button class="s-link" data-page="lessons"><span class="s-icon">📚</span><span class="s-label">Leçons</span></button>
-        <button class="s-link" data-page="vocabulary"><span class="s-icon">📖</span><span class="s-label">Vocabulaire</span></button>
-        <button class="s-link" data-page="conjugation"><span class="s-icon">🔤</span><span class="s-label">Conjugaison</span></button>
-        <button class="s-link" data-page="pronunciation"><span class="s-icon">🎤</span><span class="s-label">Prononciation</span></button>
-        <div class="s-sep"></div>
-        <div class="s-section-label">Pratiquer</div>
-        <button class="s-link" data-page="quiz"><span class="s-icon">🧠</span><span class="s-label">Quiz</span></button>
-        <div class="s-sep"></div>
-        <div class="s-section-label">Découvrir</div>
-        <button class="s-link" data-page="home"><span class="s-icon">🌍</span><span class="s-label">À propos</span></button>
-      </nav>
-
-      <div class="sidebar-bottom">
-        <div class="sidebar-stats">
-          <div class="sidebar-stat">⭐ <span id="nav-xp-val">0 XP</span></div>
-          <div class="sidebar-stat">🔥 <span id="nav-streak-val">0</span></div>
+      <nav class="topnav-links">
+        <button class="tnav-btn" data-page="progress">🏠 <span>Accueil</span></button>
+        <button class="tnav-btn" data-page="lessons">📚 <span>Leçons</span></button>
+        <button class="tnav-btn" data-page="quiz">🧠 <span>Quiz</span></button>
+        <!-- Référence dropdown -->
+        <div class="tnav-dropdown" id="tnav-ref-dropdown">
+          <button class="tnav-btn tnav-dropdown-trigger" id="tnav-ref-btn">
+            📖 <span>Référence</span> <span class="tnav-chevron">▾</span>
+          </button>
+          <div class="tnav-dropdown-menu" id="tnav-ref-menu">
+            <button class="tnav-drop-item" data-page="vocabulary">📖 Vocabulaire</button>
+            <button class="tnav-drop-item" data-page="conjugation">🔤 Conjugaison</button>
+            <button class="tnav-drop-item" data-page="pronunciation">🎤 Prononciation</button>
+            <button class="tnav-drop-item" data-page="grammar">📋 Grammaire</button>
+          </div>
         </div>
+        <button class="tnav-btn" data-page="home">🌍 <span>À propos</span></button>
+      </nav>
+      <div class="topnav-right">
+        <div class="topnav-stat">⭐ <span id="nav-xp-val">0 XP</span></div>
+        <div class="daily-goal-ring" id="daily-goal-ring" title="Objectif quotidien"></div>
+        <div class="topnav-stat">🔥 <span id="nav-streak-val">0</span></div>
         <button class="btn-icon" id="btn-theme" title="Changer le thème">🌙</button>
       </div>
-    </aside>
+    </header>
 
     <!-- MAIN BODY -->
     <div class="app-body">
-
-      <!-- Mobile top bar -->
-      <header class="app-topbar">
-        <button class="topbar-hamburger" id="nav-hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-        <div class="topbar-logo" onclick="navigate('progress')" style="cursor:pointer">
-          <img src="https://flagcdn.com/w80/pt.png" alt="PT" width="26" style="border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.2)" />
-          PortuFácil
-        </div>
-        <div class="topbar-right">
-          <div class="topbar-stat">⭐ <span id="nav-xp-val-mob">0 XP</span></div>
-          <div class="topbar-stat">🔥 <span id="nav-streak-val-mob">0</span></div>
-          <button class="btn-icon" id="btn-theme-mob" title="Changer le thème">🌙</button>
-        </div>
-      </header>
-
       <!-- All pages -->
       <main class="app-pages">
 
@@ -157,62 +137,121 @@
       </div>
     </section>
 
-    <!-- WHY PORTUGUESE -->
+    <!-- MÉTHODE -->
     <section class="section container">
       <div class="section-header fade-in">
-        <h2 class="section-title">Pourquoi apprendre le portugais ?</h2>
-        <p class="section-sub">Une langue de culture, d'aventure et d'opportunités, présente sur 4 continents.</p>
+        <h2 class="section-title">Notre méthode</h2>
+        <p class="section-sub">PortuFácil combine les meilleures approches pédagogiques dans une expérience fluide et motivante.</p>
       </div>
       <div class="why-grid">
         <div class="why-card fade-in">
-          <span class="why-card-icon">🌍</span>
-          <span class="why-card-num">260M</span>
-          <h3>Locuteurs dans le monde</h3>
-          <p>5ème langue la plus parlée au monde, présente en Europe, Amérique du Sud, Afrique et Asie.</p>
+          <span class="why-card-icon">📚</span>
+          <h3>Leçons progressives</h3>
+          <p>Du A1 au B2, chaque leçon introduit le vocabulaire en contexte, avec comparaison Portugal / Brésil et notes de grammaire intégrées.</p>
         </div>
         <div class="why-card fade-in">
-          <span class="why-card-icon">🏆</span>
-          <span class="why-card-num">#2</span>
-          <h3>Langue romane</h3>
-          <p>Proche du français, de l'espagnol et de l'italien — vos bases linguistiques vous donnent une longueur d'avance !</p>
+          <span class="why-card-icon">🔁</span>
+          <h3>Répétition espacée</h3>
+          <p>L'algorithme SRS (Spaced Repetition System) planifie les révisions au bon moment pour ancrer chaque mot durablement en mémoire.</p>
         </div>
         <div class="why-card fade-in">
-          <span class="why-card-icon">💼</span>
-          <span class="why-card-num">+9</span>
-          <h3>Pays officiels</h3>
-          <p>Portugal, Brésil, Angola, Mozambique... Ouverture sur des marchés économiques dynamiques.</p>
+          <span class="why-card-icon">💬</span>
+          <h3>Dialogues immersifs</h3>
+          <p>Des conversations progressives avec écoute TTS, blancs interactifs et feedback instantané — apprendre en contexte réel.</p>
         </div>
         <div class="why-card fade-in">
-          <span class="why-card-icon">🎭</span>
-          <span class="why-card-num">∞</span>
-          <h3>Richesse culturelle</h3>
-          <p>Fado, Bossa Nova, Fernando Pessoa, Saramago, Carnaval de Rio... Un patrimoine culturel exceptionnel.</p>
+          <span class="why-card-icon">🎯</span>
+          <h3>Défi quotidien</h3>
+          <p>5 questions chaque jour pour maintenir la cadence, accumuler des séries et gagner des XP bonus. La régularité fait la différence.</p>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
+    <!-- PARCOURS A1 → B2 -->
     <section class="section bg-section-alt">
       <div class="container">
-        <div class="section-header fade-in text-center" style="margin-bottom:48px">
-          <h2 class="section-title">Comment ça marche ?</h2>
-          <p class="section-sub" style="margin:0 auto">Trois étapes simples pour progresser rapidement.</p>
+        <div class="section-header fade-in text-center" style="margin-bottom:40px">
+          <h2 class="section-title">Le parcours A1 → B2</h2>
+          <p class="section-sub" style="margin:0 auto">Un cursus structuré pour passer de zéro à l'aisance conversationnelle.</p>
         </div>
-        <div class="how-timeline fade-in">
-          <div class="how-step">
-            <div class="how-step-icon">📖</div>
-            <h3>1. Apprends une leçon</h3>
-            <p>Vocabulaire illustré, exemples contextuels, tableaux comparatifs Portugal vs Brésil.</p>
+        <div class="about-levels fade-in">
+          <div class="about-level about-level-a1">
+            <div class="about-level-badge">A1</div>
+            <h3>Débutant</h3>
+            <ul>
+              <li>Salutations &amp; politesse</li>
+              <li>Se présenter</li>
+              <li>Chiffres, famille, couleurs</li>
+              <li>Premiers dialogues</li>
+            </ul>
+            <div class="about-level-count">7 leçons</div>
           </div>
-          <div class="how-step">
-            <div class="how-step-icon">⚡</div>
-            <h3>2. Pratique le vocabulaire</h3>
-            <p>Cartes retournables, répétition espacée, filtres par niveau de maîtrise.</p>
+          <div class="about-level-arrow">→</div>
+          <div class="about-level about-level-a2">
+            <div class="about-level-badge">A2</div>
+            <h3>Élémentaire</h3>
+            <ul>
+              <li>Vie quotidienne</li>
+              <li>Travail &amp; routine</li>
+              <li>Restaurant &amp; voyages</li>
+              <li>Passé composé</li>
+            </ul>
+            <div class="about-level-count">4 leçons</div>
           </div>
-          <div class="how-step">
-            <div class="how-step-icon">🏆</div>
-            <h3>3. Teste tes connaissances</h3>
-            <p>Quiz variés, défi quotidien, feedback immédiat et XP à gagner !</p>
+          <div class="about-level-arrow">→</div>
+          <div class="about-level about-level-b1">
+            <div class="about-level-badge">B1</div>
+            <h3>Intermédiaire</h3>
+            <ul>
+              <li>Aéroport &amp; mobilité</li>
+              <li>Subjonctif présent</li>
+              <li>Opinions &amp; débat</li>
+              <li>Narration au passé</li>
+            </ul>
+            <div class="about-level-count">2 leçons</div>
+          </div>
+          <div class="about-level-arrow">→</div>
+          <div class="about-level about-level-b2">
+            <div class="about-level-badge">B2</div>
+            <h3>Avancé</h3>
+            <ul>
+              <li>Débat professionnel</li>
+              <li>Subjonctif imparfait</li>
+              <li>Nuances culturelles</li>
+              <li>Langue soutenue</li>
+            </ul>
+            <div class="about-level-count">2 leçons</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PT vs BR -->
+    <section class="section container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Deux variantes, une langue</h2>
+        <p class="section-sub">PortuFácil couvre les deux grandes variantes du portugais pour ne laisser aucune porte fermée.</p>
+      </div>
+      <div class="about-variants fade-in">
+        <div class="about-variant about-variant-pt">
+          <div class="about-variant-flag">🇵🇹</div>
+          <h3>Portugais européen</h3>
+          <p>Prononciation plus fermée, vocabulaire formel, <em>tu</em> vs <em>você</em>. Parlé au Portugal, en Angola, au Mozambique et dans la diaspora.</p>
+          <div class="about-variant-examples">
+            <span class="about-variant-ex">comboio</span>
+            <span class="about-variant-ex">pequeno-almoço</span>
+            <span class="about-variant-ex">casa de banho</span>
+          </div>
+        </div>
+        <div class="about-variant-vs">VS</div>
+        <div class="about-variant about-variant-br">
+          <div class="about-variant-flag">🇧🇷</div>
+          <h3>Portugais brésilien</h3>
+          <p>Prononciation plus ouverte et musicale, <em>você</em> universel, emprunts anglais fréquents. Parlé par 215 millions de personnes.</p>
+          <div class="about-variant-examples">
+            <span class="about-variant-ex">trem</span>
+            <span class="about-variant-ex">café da manhã</span>
+            <span class="about-variant-ex">banheiro</span>
           </div>
         </div>
       </div>
@@ -225,9 +264,6 @@
         <div class="quote-author" id="quote-author">— Fernando Pessoa</div>
       </div>
     </div>
-
-    <!-- SRS WIDGET -->
-    <div class="srs-widget" id="srs-widget"></div>
 
     <!-- CULTURAL FACTS -->
     <section class="section container" style="padding-top:40px">
@@ -299,31 +335,35 @@
   <div class="page" id="page-vocabulary">
     <div class="section container">
 
-      <!-- Header -->
+      <!-- Hero Header -->
       <div class="vocab-page-header fade-in">
-        <h2 style="font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:8px">📖 Vocabulaire Thématique</h2>
-        <p style="opacity:0.85;font-size:1rem">Explorez le vocabulaire par thèmes. Retournez les cartes pour révéler la traduction !</p>
-        <div style="margin-top:12px;font-size:0.85rem;opacity:0.75">
-          🔴 Nouveau &nbsp;|&nbsp; 🟡 En cours &nbsp;|&nbsp; 🟢 Maîtrisé
+        <span class="vocab-header-deco">📖</span>
+        <h2>📖 Vocabulaire Thématique</h2>
+        <p>Explorez le vocabulaire par thèmes. Retournez les cartes pour révéler la traduction !</p>
+        <div class="vocab-header-legend">
+          <span class="vocab-legend-item"><span class="vocab-legend-dot dot-new"></span> Nouveau</span>
+          <span class="vocab-legend-item"><span class="vocab-legend-dot dot-learning"></span> En cours</span>
+          <span class="vocab-legend-item"><span class="vocab-legend-dot dot-mastered"></span> Maîtrisé</span>
         </div>
+        <div class="vocab-total-badge" id="vocab-total-badge">📚 <span id="vocab-total-count">0</span> mots au total</div>
       </div>
 
       <!-- Search & Controls -->
       <div class="vocab-search-row">
         <div class="search-wrap">
           <span class="search-icon">🔍</span>
-          <input type="text" class="vocab-search" id="vocab-search" placeholder="Rechercher un mot..." />
+          <input type="text" class="vocab-search" id="vocab-search" placeholder="Rechercher un mot en portugais ou français..." />
         </div>
         <button class="btn-shuffle" id="btn-shuffle">🔀 Mélanger</button>
       </div>
 
       <!-- Filter Tabs -->
       <div class="vocab-filter-tabs">
-        <button class="vocab-filter-tab active" data-filter="all">Tous</button>
-        <button class="vocab-filter-tab" data-filter="review">À réviser 🔴🟡</button>
-        <button class="vocab-filter-tab" data-filter="learned">Maîtrisés 🟢</button>
+        <button class="vocab-filter-tab active" data-filter="all">📋 Tous</button>
+        <button class="vocab-filter-tab" data-filter="review">🔄 À réviser</button>
+        <button class="vocab-filter-tab" data-filter="learned">✅ Maîtrisés</button>
         <button class="vocab-filter-tab" data-filter="srs">📅 SRS</button>
-        <button class="vocab-filter-tab" data-filter="hard">⚠️ Difficile</button>
+        <button class="vocab-filter-tab" data-filter="hard">⚠️ Difficiles</button>
       </div>
 
       <!-- Categories -->
@@ -414,8 +454,13 @@
   <div class="page" id="page-pronunciation">
     <div class="section container">
       <div class="section-header fade-in">
-        <h2 class="section-title">🎤 Prononciation</h2>
-        <p class="section-sub">Les sons du portugais démystifiés. Cliquez sur les lettres pour entendre leur prononciation !</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+          <div>
+            <h2 class="section-title">🎤 Prononciation</h2>
+            <p class="section-sub">Les sons du portugais démystifiés. Cliquez sur les lettres pour entendre leur prononciation !</p>
+          </div>
+          <div id="pronunciation-speed-toggle"></div>
+        </div>
       </div>
 
       <!-- PT vs BR banner -->
@@ -486,6 +531,17 @@
         <div id="practice-phrases-container" style="display:flex;flex-direction:column;gap:12px;margin-top:8px"></div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ==================== PAGE: GRAMMAR ==================== -->
+  <div class="page" id="page-grammar">
+    <div class="container section">
+      <div class="section-header">
+        <h2 class="section-title">📋 Référence grammaticale</h2>
+        <p class="section-sub">Tableaux essentiels pour le portugais brésilien.</p>
+      </div>
+      <div id="grammar-content"></div>
     </div>
   </div>
 
@@ -637,11 +693,32 @@
           </div>
           <span class="pdash-xp-label" id="pdash-xp-label">0 / 200 XP vers le niveau 2</span>
         </div>
+        <div class="pdash-hero-row2">
+          <div id="pdash-daily-goal"></div>
+          <div class="pdash-goal-config">
+            <span class="pdash-goal-config-lbl">Objectif :</span>
+            <div id="pdash-goal-btns"></div>
+            <span class="pdash-goal-config-unit">XP/jour</span>
+          </div>
+        </div>
       </div>
 
       <!-- Personalized action plan -->
       <div class="pdash-section-label fade-in" id="pdash-actions-label">📋 Que faire maintenant ?</div>
       <div id="pdash-actions" class="pdash-actions fade-in"></div>
+
+      <!-- Skill breakdown -->
+      <div class="pdash-card fade-in" style="margin-bottom:24px">
+        <div class="pdash-card-title">📊 Compétences</div>
+        <div id="pdash-skills"></div>
+      </div>
+
+      <!-- SRS review -->
+      <div class="pdash-card fade-in" style="margin-bottom:24px">
+        <div class="pdash-card-title">📅 Révision des mots</div>
+        <p class="pdash-save-desc" style="margin-bottom:12px">Révisez vos mots avec le système de répétition espacée (SRS).</p>
+        <button class="btn-save btn-save-export" onclick="startSRSSession()">📅 Réviser les mots dus</button>
+      </div>
 
       <!-- Daily challenge calendar -->
       <div class="pdash-card fade-in" style="margin-bottom:24px">
@@ -706,6 +783,9 @@
     <button class="bn-link" data-page="vocabulary"><span class="bn-icon">📖</span><span class="bn-label">Vocab</span></button>
     <button class="bn-link" data-page="conjugation"><span class="bn-icon">🔤</span><span class="bn-label">Gram.</span></button>
   </nav>
+
+  <!-- Placement test modal -->
+  <div id="placement-modal" class="placement-modal"><!-- rendered by JS --></div>
 
   <!-- Entry point (Vite handles bundling) -->
   <script type="module" src="/src/main.js"></script>

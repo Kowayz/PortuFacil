@@ -1,8 +1,8 @@
 import './styles/index.css';
 import { STATE, DEFAULT_STATE, loadState, saveState, setStateFrom, _cb } from './core/state.js';
-import { navigate, registerPageRenderer } from './core/router.js';
+import { navigate, registerPageRenderer, registerNavActiveCallback } from './core/router.js';
 
-import { initNav, updateNavXP, updateNavStreak, toggleTheme } from './components/nav.js';
+import { initNav, updateNavActive, updateNavXP, updateNavStreak, toggleTheme } from './components/nav.js';
 import { showToast } from './components/toast.js';
 import { showLevelUpModal, hideLoadingScreen } from './components/modal.js';
 
@@ -12,18 +12,28 @@ import { initHome, trackCulturalFact, renderSRSWidget } from './pages/home.js';
 import {
   renderLessons, openLesson, closeLesson,
   answerLessonMCQ, checkLessonTranslate, nextLessonQuestion, resetLessonQuiz, completeLesson,
-  playConversation, answerConv,
+  startConv, answerConvLine, playSingleLine, nextLessonSection,
+  answerWarmup, skipWarmup,
+  answerMatchPt, answerMatchFr,
+  clickOrderWord, removeLastOrderWord, checkOrderAnswer,
+  openCheckpoint, openQuickReview,
+  playListenQuestion, toggleListenHint, toggleImmersionMode,
+  openBoss,
 } from './pages/lessons.js';
 import {
   renderVocabulary, selectVocabCategory, handleFlipCard, filterVocabCards,
 } from './pages/vocabulary.js';
 import { renderConjugation, searchVerb, showVerbConjugation, switchTense } from './pages/conjugation.js';
 import { renderPronunciation } from './pages/pronunciation.js';
+import { renderGrammar } from './pages/grammar.js';
+import { startPlacementTest, answerPlacement, skipPlacementTest } from './pages/placement.js';
+import { startSRSSession, revealSRSCard, answerSRS, adjustDailyGoal } from './pages/progress.js';
+import { startGrammarPractice, answerGrammarExercise } from './pages/grammar.js';
 import {
   startQuiz, placeDragWord, answerDrag, answerMCQ, answerFill,
   nextQuizQuestion, backToQuizModes, _resetQuizState, handleMatchClick,
 } from './pages/quiz/index.js';
-import { speakWord, speakLetter } from './utils/speech.js';
+import { speakWord, speakLetter, getTTSSpeed, setTTSSpeed } from './utils/speech.js';
 import { openDictModal, closeDictModal } from './components/dictModal.js';
 
 // ── Wire _cb callbacks (breaks circular deps in state.js) ─────────────────────
@@ -31,12 +41,17 @@ _cb.updateNavXP      = updateNavXP;
 _cb.updateNavStreak  = updateNavStreak;
 _cb.showLevelUpModal = showLevelUpModal;
 _cb.checkBadges      = checkBadges;
+_cb.showToast        = showToast;
+
+// ── Register nav active callback ──────────────────────────────────────────────
+registerNavActiveCallback(updateNavActive);
 
 // ── Register page renderers (breaks circular deps in router.js) ───────────────
 registerPageRenderer('lessons',       renderLessons);
 registerPageRenderer('vocabulary',    renderVocabulary);
 registerPageRenderer('conjugation',   renderConjugation);
 registerPageRenderer('pronunciation', renderPronunciation);
+registerPageRenderer('grammar',       renderGrammar);
 registerPageRenderer('progress',      renderProgress);
 registerPageRenderer('_resetQuizState', _resetQuizState);
 
@@ -75,14 +90,23 @@ function importProgress(event) {
 Object.assign(window, {
   navigate,
   openLesson, closeLesson, answerLessonMCQ, checkLessonTranslate,
-  nextLessonQuestion, resetLessonQuiz, completeLesson, playConversation, answerConv,
+  nextLessonQuestion, resetLessonQuiz, completeLesson, startConv, answerConvLine, playSingleLine, nextLessonSection,
+  answerWarmup, skipWarmup,
+  answerMatchPt, answerMatchFr,
+  clickOrderWord, removeLastOrderWord, checkOrderAnswer,
+  openCheckpoint, openQuickReview,
   selectVocabCategory, handleFlipCard, filterVocabCards,
   searchVerb, showVerbConjugation, switchTense,
   startQuiz, placeDragWord, answerDrag, answerMCQ, answerFill,
   handleMatchClick, backToQuizModes, trackCulturalFact, renderSRSWidget,
-  speakWord, speakLetter, toggleTheme,
+  speakWord, speakLetter, getTTSSpeed, setTTSSpeed, toggleTheme,
   exportProgress, importProgress, filterBadges,
+  answerPlacement, skipPlacementTest,
   openDictModal, closeDictModal,
+  playListenQuestion, toggleListenHint, toggleImmersionMode,
+  openBoss,
+  startSRSSession, revealSRSCard, answerSRS, adjustDailyGoal,
+  startGrammarPractice, answerGrammarExercise,
 });
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
@@ -104,6 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const hasStarted = STATE.completedLessons.length > 0 || Object.keys(STATE.learnedWords).length > 0;
   navigate(hasStarted ? 'progress' : 'home');
   hideLoadingScreen();
+
+  if (!STATE.placementDone && !hasStarted) {
+    setTimeout(startPlacementTest, 800);
+  }
 
   document.getElementById('quiz-next-btn')?.addEventListener('click', nextQuizQuestion);
 

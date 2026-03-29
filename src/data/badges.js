@@ -285,5 +285,61 @@ export const badges = [
     "icon": "⭐",
     "description": "Atteindre 500 XP",
     "condition": "xp >= 500"
+  },
+  {
+    "id": "speed_3",
+    "name": "⚡ Éclair",
+    "icon": "⚡",
+    "description": "???",
+    "secret": true
+  },
+  {
+    "id": "night_study_secret",
+    "name": "🌙 Noctambule",
+    "icon": "🌙",
+    "description": "???",
+    "secret": true
+  },
+  {
+    "id": "perfect_5_secret",
+    "name": "🌟 Perfectionniste",
+    "icon": "🌟",
+    "description": "???",
+    "secret": true
+  },
+  {
+    "id": "boss_slayer",
+    "name": "🐉 Tueur de Boss",
+    "icon": "🐉",
+    "description": "???",
+    "secret": true
+  },
+  {
+    "id": "immersed",
+    "name": "🔭 Immersé",
+    "icon": "🔭",
+    "description": "???",
+    "secret": true
+  },
+  {
+    "id": "linguist_100",
+    "name": "📚 Linguiste",
+    "icon": "📚",
+    "description": "???",
+    "secret": true
+  },
+  {
+    "id": "comeback",
+    "name": "💪 Retour au jeu",
+    "icon": "💪",
+    "description": "???",
+    "secret": true
+  },
+  {
+    "id": "goal_7",
+    "name": "🎯 Discipline",
+    "icon": "🎯",
+    "description": "???",
+    "secret": true
   }
 ];

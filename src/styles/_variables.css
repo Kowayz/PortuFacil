@@ -27,9 +27,14 @@
   --shadow-sm: 0 2px 8px rgba(26,58,92,0.08);
   --shadow-md: 0 4px 16px rgba(26,58,92,0.12);
   --shadow-lg: 0 8px 32px rgba(26,58,92,0.16);
-  --radius: 12px;
+  --radius: 14px;
   --radius-lg: 20px;
   --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --clay-shadow: 0 4px 0 rgba(26,58,92,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  --clay-shadow-hover: 0 6px 0 rgba(26,58,92,0.14), 0 3px 12px rgba(0,0,0,0.08);
+  --clay-shadow-active: 0 2px 0 rgba(26,58,92,0.10), 0 1px 4px rgba(0,0,0,0.04);
+  --clay-border: 2px solid rgba(26,58,92,0.10);
+  --clay-radius: 18px;
 }
 
 [data-theme="dark"] {
@@ -43,6 +48,9 @@
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  --clay-shadow: 0 4px 0 rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2);
+  --clay-shadow-hover: 0 6px 0 rgba(0,0,0,0.4), 0 3px 12px rgba(0,0,0,0.25);
+  --clay-shadow-active: 0 2px 0 rgba(0,0,0,0.3), 0 1px 4px rgba(0,0,0,0.15);
   --ochre-pale: #2A1F0A;
   --green-pale: #0A1F10;
   --red-pale: #1F0A08;

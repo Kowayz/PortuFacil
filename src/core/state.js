@@ -21,6 +21,18 @@ export const DEFAULT_STATE = {
   lastDailyDate: null,
   dailyStreak: 0,
   dailyHistory: [],
+  placementDone: false,
+  detectedLevel: null,
+  lessonStars: {},           // { lessonId: 1 | 2 | 3 }
+  completedCheckpoints: [],  // e.g. ['cp-A1-4', 'cp-A1-8']
+  completedBosses: [],       // e.g. ['boss-A1']
+  dailyGoalXP: 50,           // XP cible par jour
+  dailyXPToday: 0,           // XP accumulés aujourd'hui
+  dailyGoalDate: null,       // date du dernier reset quotidien
+  goalStreak: 0,             // jours consécutifs avec objectif atteint
+  goalStreakDate: null,       // date du dernier objectif atteint
+  immersionSessions: 0,      // nombre de sessions immersion activées
+  lastStreak: 0,             // streak précédent avant rupture (pour badge comeback)
 };
 
 export let STATE = {};
@@ -28,10 +40,11 @@ export let STATE = {};
 // Callback injection — avoids circular dependencies.
 // main.js sets real implementations at init time.
 export const _cb = {
-  updateNavXP:     () => {},
-  updateNavStreak: () => {},
-  showLevelUpModal: () => {},
-  checkBadges:     () => {},
+  updateNavXP:        () => {},
+  updateNavStreak:    () => {},
+  showLevelUpModal:   () => {},
+  checkBadges:        () => {},
+  showToast:          () => {},
 };
 
 export function loadState() {
@@ -48,6 +61,13 @@ export function loadState() {
     }
     if (!STATE.errors) STATE.errors = {};
     if (!STATE.lessonScores) STATE.lessonScores = {};
+    if (!STATE.lessonStars) STATE.lessonStars = {};
+    if (!STATE.completedCheckpoints) STATE.completedCheckpoints = [];
+    if (!STATE.completedBosses) STATE.completedBosses = [];
+    if (STATE.dailyGoalXP == null) STATE.dailyGoalXP = 50;
+    if (STATE.goalStreak == null) STATE.goalStreak = 0;
+    if (STATE.immersionSessions == null) STATE.immersionSessions = 0;
+    if (STATE.lastStreak == null) STATE.lastStreak = 0;
   } catch {
     STATE = { ...DEFAULT_STATE };
   }
@@ -68,6 +88,23 @@ export function addXP(amount) {
   const newLevel = Math.floor(STATE.xp / 200) + 1;
   const leveledUp = newLevel > STATE.level;
   STATE.level = newLevel;
+
+  // Daily goal tracking
+  const today = new Date().toDateString();
+  if (STATE.dailyGoalDate !== today) {
+    STATE.dailyXPToday = 0;
+    STATE.dailyGoalDate = today;
+  }
+  const prevDailyXP = STATE.dailyXPToday;
+  STATE.dailyXPToday += amount;
+  if (STATE.dailyXPToday >= STATE.dailyGoalXP && prevDailyXP < STATE.dailyGoalXP) {
+    // Goal reached for the first time today
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    STATE.goalStreak = STATE.goalStreakDate === yesterday ? (STATE.goalStreak || 0) + 1 : 1;
+    STATE.goalStreakDate = today;
+    _cb.showToast('success', '🎯 Objectif du jour atteint !', `${STATE.dailyXPToday}/${STATE.dailyGoalXP} XP aujourd'hui !`);
+  }
+
   _cb.updateNavXP();
   if (leveledUp) _cb.showLevelUpModal(STATE.level);
   _cb.checkBadges();
@@ -78,6 +115,7 @@ export function updateStreak() {
   const today = new Date().toDateString();
   if (STATE.lastActivity === today) return;
   const yesterday = new Date(Date.now() - 86400000).toDateString();
+  if (STATE.lastActivity !== yesterday && STATE.streak >= 3) STATE.lastStreak = STATE.streak;
   STATE.streak = STATE.lastActivity === yesterday ? STATE.streak + 1 : 1;
   STATE.lastActivity = today;
   const day = new Date().getDay();

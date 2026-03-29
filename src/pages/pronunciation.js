@@ -1,11 +1,25 @@
 import { DATA } from '../data/index.js';
 import { observeFadeIns } from '../utils/observers.js';
+import { getTTSSpeed } from '../utils/speech.js';
 
 export function renderPronunciation() {
+  renderSpeedToggle();
   renderAlphabet();
   renderSpecialSounds();
   renderTraps();
   renderPracticePhrases();
+}
+
+function renderSpeedToggle() {
+  const container = document.getElementById('pronunciation-speed-toggle');
+  if (!container) return;
+  container.innerHTML = `
+    <div class="tts-speed-pill">
+      <span class="tts-speed-label">🔊 Vitesse</span>
+      <button class="tts-speed-btn ${getTTSSpeed() === 'normal' ? 'active' : ''}" data-speed="normal" onclick="setTTSSpeed('normal')">Normal</button>
+      <button class="tts-speed-btn ${getTTSSpeed() === 'slow' ? 'active' : ''}" data-speed="slow" onclick="setTTSSpeed('slow')">🐢 Lent</button>
+    </div>
+  `;
 }
 
 export function renderAlphabet() {

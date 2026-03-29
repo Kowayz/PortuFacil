@@ -5,10 +5,10 @@
    ============================ */
 .lesson-quiz {
   background: var(--white);
-  border-radius: var(--radius-lg);
+  border-radius: var(--clay-radius);
   padding: 32px;
-  box-shadow: var(--shadow-sm);
-  border: 2px solid var(--blue-pale);
+  box-shadow: var(--clay-shadow);
+  border: var(--clay-border);
   margin-top: 32px;
 }
 
@@ -42,32 +42,42 @@
 
 .quiz-option {
   padding: 12px 18px;
-  border: 2px solid var(--cream-dark);
-  border-radius: var(--radius);
+  border: var(--clay-border);
+  border-radius: var(--clay-radius);
   background: var(--white);
   cursor: pointer;
-  transition: all var(--transition);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out, background 0.15s ease-out;
   font-size: 0.9rem;
   text-align: left;
   color: var(--text-dark);
+  box-shadow: var(--clay-shadow);
 }
 
 .quiz-option:hover:not(.disabled) {
-  border-color: var(--blue);
+  border-color: rgba(26,58,92,0.2);
   background: var(--blue-pale);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-hover);
+}
+
+.quiz-option:active:not(.disabled) {
+  transform: translateY(2px);
+  box-shadow: var(--clay-shadow-active);
 }
 
 .quiz-option.correct {
-  border-color: var(--green) !important;
+  border-color: rgba(74,124,89,0.4) !important;
   background: var(--green-pale) !important;
   color: var(--green) !important;
   font-weight: 700;
+  box-shadow: 0 4px 0 rgba(74,124,89,0.2) !important;
 }
 
 .quiz-option.wrong {
-  border-color: var(--red) !important;
+  border-color: rgba(200,75,49,0.4) !important;
   background: var(--red-pale) !important;
   color: var(--red) !important;
+  box-shadow: 0 4px 0 rgba(200,75,49,0.2) !important;
 }
 
 .quiz-option.disabled { cursor: not-allowed; }
@@ -105,14 +115,25 @@
   padding: 10px 24px;
   background: var(--blue);
   color: var(--white);
-  border-radius: var(--radius);
+  border-radius: var(--clay-radius);
   font-size: 0.875rem;
   font-weight: 700;
-  transition: all var(--transition);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
   border: none;
+  cursor: pointer;
+  box-shadow: var(--clay-shadow);
 }
 
-.btn-check-answer:hover { background: var(--blue-light); }
+.btn-check-answer:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-hover);
+}
+
+.btn-check-answer:active {
+  transform: translateY(2px);
+  box-shadow: var(--clay-shadow-active);
+}
 
 .quiz-nav {
   display: flex;
@@ -126,14 +147,25 @@
   padding: 12px 24px;
   background: var(--ochre);
   color: var(--blue);
-  border-radius: var(--radius);
+  border-radius: var(--clay-radius);
   font-weight: 700;
   font-size: 0.9rem;
-  transition: all var(--transition);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
   border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(26,58,92,0.2);
 }
 
-.btn-next-q:hover { background: var(--ochre-light); }
+.btn-next-q:hover {
+  background: var(--ochre-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(26,58,92,0.22);
+}
+
+.btn-next-q:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(26,58,92,0.15);
+}
 
 .quiz-counter {
   font-family: 'DM Mono', monospace;
@@ -154,7 +186,7 @@
 
 .quiz-header {
   background: linear-gradient(135deg, var(--blue), var(--blue-light));
-  border-radius: var(--radius-lg);
+  border-radius: var(--clay-radius);
   padding: 20px 28px;
   color: var(--white);
   margin-bottom: 24px;
@@ -163,6 +195,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+  box-shadow: 0 5px 0 rgba(26,58,92,0.2), 0 2px 12px rgba(26,58,92,0.15);
 }
 
 .quiz-title { font-size: 1.1rem; font-weight: 700; }
@@ -170,25 +203,26 @@
 
 .quiz-bar {
   margin-top: 10px;
-  height: 6px;
+  height: 8px;
   background: rgba(255,255,255,0.2);
-  border-radius: 3px;
+  border-radius: 50px;
   overflow: hidden;
   width: 100%;
 }
 
 .quiz-bar-fill {
   height: 100%;
-  background: var(--ochre-light);
-  border-radius: 3px;
+  background: linear-gradient(90deg, var(--ochre), var(--ochre-light));
+  border-radius: 50px;
   transition: width 0.4s ease;
 }
 
 .quiz-card {
   background: var(--white);
-  border-radius: var(--radius-lg);
+  border-radius: var(--clay-radius);
   padding: 36px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--clay-shadow);
+  border: var(--clay-border);
   margin-bottom: 20px;
 }
 
@@ -219,33 +253,43 @@
 
 .quiz-mcq-btn {
   padding: 16px 20px;
-  border: 2px solid var(--cream-dark);
-  border-radius: var(--radius);
+  border: var(--clay-border);
+  border-radius: var(--clay-radius);
   background: var(--white);
   cursor: pointer;
   font-size: 0.95rem;
   text-align: left;
-  transition: all var(--transition);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out, background 0.15s ease-out;
   color: var(--text-dark);
   font-family: 'Lato', sans-serif;
+  box-shadow: var(--clay-shadow);
 }
 
 .quiz-mcq-btn:hover:not(.answered) {
-  border-color: var(--blue);
+  border-color: rgba(26,58,92,0.2);
   background: var(--blue-pale);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-hover);
+}
+
+.quiz-mcq-btn:active:not(.answered) {
+  transform: translateY(2px);
+  box-shadow: var(--clay-shadow-active);
 }
 
 .quiz-mcq-btn.correct-ans {
-  border-color: var(--green) !important;
+  border-color: rgba(74,124,89,0.4) !important;
   background: var(--green-pale) !important;
   color: var(--green) !important;
   font-weight: 700;
+  box-shadow: 0 4px 0 rgba(74,124,89,0.2) !important;
 }
 
 .quiz-mcq-btn.wrong-ans {
-  border-color: var(--red) !important;
+  border-color: rgba(200,75,49,0.4) !important;
   background: var(--red-pale) !important;
   color: var(--red) !important;
+  box-shadow: 0 4px 0 rgba(200,75,49,0.2) !important;
 }
 
 .quiz-mcq-btn.answered { cursor: not-allowed; }
@@ -278,27 +322,38 @@
   padding: 8px 16px;
   background: var(--blue-pale);
   color: var(--blue);
-  border-radius: var(--radius);
+  border-radius: var(--clay-radius);
   font-weight: 700;
   cursor: pointer;
   user-select: none;
-  transition: all var(--transition);
-  border: 2px solid transparent;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out, color 0.15s ease-out;
+  border: var(--clay-border);
+  box-shadow: var(--clay-shadow);
 }
 
-.drag-word:hover { background: var(--blue); color: var(--white); }
+.drag-word:hover {
+  background: var(--blue);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-hover);
+}
+
+.drag-word:active {
+  transform: translateY(2px);
+  box-shadow: var(--clay-shadow-active);
+}
 .drag-word.used { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
 
 .drag-zone {
   min-height: 60px;
   border: 2px dashed var(--cream-dark);
-  border-radius: var(--radius);
+  border-radius: var(--clay-radius);
   padding: 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
-  transition: border-color var(--transition);
+  transition: border-color 0.15s ease-out;
   margin-bottom: 12px;
 }
 
@@ -308,10 +363,17 @@
   padding: 6px 14px;
   background: var(--blue);
   color: var(--white);
-  border-radius: var(--radius);
+  border-radius: var(--clay-radius);
   font-weight: 700;
   cursor: pointer;
   font-size: 0.9rem;
+  box-shadow: 0 3px 0 rgba(26,58,92,0.25);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.drag-placed-word:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 rgba(26,58,92,0.28);
 }
 
 .drag-placeholder { color: var(--text-light); font-size: 0.85rem; font-style: italic; }
@@ -347,30 +409,54 @@
   padding: 14px 32px;
   background: var(--blue);
   color: var(--white);
-  border-radius: var(--radius);
+  border-radius: var(--clay-radius);
   font-weight: 700;
   font-size: 0.95rem;
   border: none;
-  transition: all var(--transition);
+  cursor: pointer;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+  box-shadow: var(--clay-shadow);
 }
 
-.btn-submit-quiz:hover { background: var(--blue-light); }
-.btn-submit-quiz:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-submit-quiz:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-hover);
+}
+
+.btn-submit-quiz:active {
+  transform: translateY(2px);
+  box-shadow: var(--clay-shadow-active);
+}
+
+.btn-submit-quiz:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
 .btn-next-quiz {
   padding: 14px 32px;
   background: var(--ochre);
   color: var(--blue);
-  border-radius: var(--radius);
+  border-radius: var(--clay-radius);
   font-weight: 700;
   font-size: 0.95rem;
   border: none;
-  transition: all var(--transition);
+  cursor: pointer;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
   display: none;
+  box-shadow: 0 4px 0 rgba(26,58,92,0.2);
 }
 
 .btn-next-quiz.show { display: block; }
-.btn-next-quiz:hover { background: var(--ochre-light); }
+
+.btn-next-quiz:hover {
+  background: var(--ochre-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(26,58,92,0.22);
+}
+
+.btn-next-quiz:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(26,58,92,0.15);
+}
 
 /* ============================
    QUIZ RESULT
@@ -380,8 +466,9 @@
   text-align: center;
   padding: 48px;
   background: var(--white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--clay-radius);
+  box-shadow: var(--clay-shadow);
+  border: var(--clay-border);
 }
 
 .quiz-result.show { display: block; }
@@ -424,9 +511,20 @@
   font-weight: 700;
   font-size: 0.95rem;
   border: none;
-  transition: all var(--transition);
+  cursor: pointer;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
   margin-top: 24px;
   margin-right: 12px;
+  box-shadow: 0 4px 0 rgba(26,58,92,0.25);
 }
 
-.btn-retry:hover { background: var(--blue-light); }
+.btn-retry:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(26,58,92,0.28);
+}
+
+.btn-retry:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(26,58,92,0.15);
+}

@@ -1,7 +1,9 @@
-import { STATE } from '../core/state.js';
+import { STATE, addXP, saveState } from '../core/state.js';
 import { DATA } from '../data/index.js';
 import { formatTime, getLevelTitle } from '../utils/text.js';
-import { getStatus, getDueWords } from '../utils/srs.js';
+import { getStatus, getDueWords, updateAfterReview } from '../utils/srs.js';
+import { showToast } from '../components/toast.js';
+import { getSkillBreakdown } from './lessons.js';
 export { checkBadges } from '../utils/badges.js';
 
 // Total lessons per level (populated lazily)
@@ -38,6 +40,7 @@ export function renderProgress() {
   renderActions();
   renderDailyCalendar();
   renderRoadmap();
+  renderSkillBreakdown();
   renderWeakSpots();
   renderWeeklyActivity();
   renderBadges();
@@ -67,6 +70,36 @@ function renderHero() {
 
   const bcount = document.getElementById('pdash-badges-count');
   if (bcount) bcount.textContent = `${STATE.earnedBadges.length} / ${DATA.badges.length}`;
+
+  // Daily goal ring in hero
+  const goal = STATE.dailyGoalXP || 50;
+  const today = new Date().toDateString();
+  const xpToday = STATE.dailyGoalDate === today ? (STATE.dailyXPToday || 0) : 0;
+  const goalPct = Math.min(100, Math.round((xpToday / goal) * 100));
+  const goalDone = xpToday >= goal;
+  const goalRing = document.getElementById('pdash-daily-goal');
+  if (goalRing) {
+    goalRing.innerHTML = `
+      <div class="pdash-dg-ring">
+        <svg viewBox="0 0 40 40">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="4"/>
+          <circle cx="20" cy="20" r="17" fill="none" stroke="${goalDone ? 'var(--ochre-light)' : 'white'}" stroke-width="4"
+            stroke-dasharray="${goalPct} 100" stroke-dashoffset="25" stroke-linecap="round"/>
+        </svg>
+        <span class="pdash-dg-emoji">${goalDone ? '✅' : '🎯'}</span>
+      </div>
+      <div class="pdash-dg-text">
+        <div class="pdash-dg-val">${xpToday}<span style="font-size:0.75rem;opacity:0.7">/${goal}</span></div>
+        <div class="pdash-dg-lbl">XP aujourd'hui</div>
+      </div>
+    `;
+  }
+  const goalBtns = document.getElementById('pdash-goal-btns');
+  if (goalBtns) {
+    goalBtns.innerHTML = [25, 50, 100, 150].map(v =>
+      `<button class="pdash-goal-btn ${v === goal ? 'active' : ''}" onclick="adjustDailyGoal(${v})">${v}</button>`
+    ).join('');
+  }
 }
 
 // ── Action plan ─────────────────────────────────────────────────────────────
@@ -330,6 +363,26 @@ function renderWeeklyActivity() {
   }).join('');
 }
 
+// ── Skill breakdown ──────────────────────────────────────────────────────────
+
+function renderSkillBreakdown() {
+  const container = document.getElementById('pdash-skills');
+  if (!container) return;
+  const skills = getSkillBreakdown();
+  container.innerHTML = skills.map(s => `
+    <div class="pdash-skill-row">
+      <div class="pdash-skill-label">
+        <span>${s.icon}</span>
+        <span>${s.label}</span>
+      </div>
+      <div class="pdash-skill-bar">
+        <div class="pdash-skill-fill" style="width:${s.pct}%;background:${s.color}"></div>
+      </div>
+      <div class="pdash-skill-pct" style="color:${s.color}">${s.pct}%</div>
+    </div>
+  `).join('');
+}
+
 // ── Badges ──────────────────────────────────────────────────────────────────
 
 function renderBadges() {
@@ -337,15 +390,119 @@ function renderBadges() {
   if (!container) return;
   container.innerHTML = DATA.badges.map(b => {
     const earned = STATE.earnedBadges.includes(b.id);
+    const isSecret = b.secret && !earned;
     return `
-      <div class="badge-card ${earned ? 'earned' : 'locked'}" title="${b.description}">
-        <span class="badge-icon">${b.icon}</span>
-        <div class="badge-name">${b.name}</div>
-        <div class="badge-desc">${b.description}</div>
+      <div class="badge-card ${earned ? 'earned' : 'locked'} ${isSecret ? 'secret' : ''}" title="${isSecret ? 'Badge secret — continuez à jouer !' : b.description}">
+        <span class="badge-icon">${isSecret ? '❓' : b.icon}</span>
+        <div class="badge-name">${isSecret ? 'Mystère' : b.name}</div>
+        <div class="badge-desc">${isSecret ? 'Continuez à jouer pour débloquer ce badge secret !' : b.description}</div>
         ${earned ? '<span class="badge-earned-label">✓ Obtenu</span>' : ''}
       </div>
     `;
   }).join('');
+}
+
+// ── SRS interactive session ──────────────────────────────────────────────────
+
+let _srsKeys = [];
+let _srsIndex = 0;
+let _srsFlipped = false;
+
+export function startSRSSession() {
+  const dueKeys = getDueWords(STATE.learnedWords);
+  if (!dueKeys.length) {
+    showToast('info', '✅ Rien à réviser', 'Tous vos mots sont à jour !');
+    return;
+  }
+  _srsKeys = dueKeys;
+  _srsIndex = 0;
+  _renderSRSModal();
+}
+
+function _renderSRSModal() {
+  let overlay = document.getElementById('srs-modal-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'srs-modal-overlay';
+    overlay.className = 'srs-overlay';
+    document.body.appendChild(overlay);
+  }
+  _srsFlipped = false;
+  const total = _srsKeys.length;
+  const pct = Math.round((_srsIndex / total) * 100);
+
+  if (_srsIndex >= total) {
+    overlay.innerHTML = `
+      <div class="srs-modal">
+        <div class="srs-complete">
+          <div style="font-size:2rem;margin-bottom:8px">🎉</div>
+          <h3>Révision terminée !</h3>
+          <p>${total} mot${total > 1 ? 's' : ''} révisé${total > 1 ? 's' : ''}</p>
+          <button class="srs-btn srs-btn-done" onclick="document.getElementById('srs-modal-overlay').remove()">Fermer</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const key = _srsKeys[_srsIndex];
+  const [catId, ...rest] = key.split('_');
+  const wordPt = rest.join('_');
+  const cat  = DATA.vocabulary?.categories?.find(c => c.id === catId);
+  const word = cat?.words?.find(w => w.pt === wordPt) || { pt: wordPt, fr: '?', phonetic: '' };
+
+  overlay.innerHTML = `
+    <div class="srs-modal">
+      <div class="srs-modal-header">
+        <span class="srs-modal-title">📅 Révision SRS</span>
+        <button onclick="document.getElementById('srs-modal-overlay').remove()" class="srs-close-btn">✕</button>
+      </div>
+      <div class="srs-progress-bar"><div class="srs-progress-fill" style="width:${pct}%"></div></div>
+      <div class="srs-counter">${_srsIndex + 1} / ${total}</div>
+      <div class="srs-card" id="srs-card" onclick="revealSRSCard()">
+        <div class="srs-word-pt">${word.pt}</div>
+        ${word.phonetic ? `<div class="srs-phonetic">[${word.phonetic}]</div>` : ''}
+        <div class="srs-reveal-hint" id="srs-reveal-hint">Cliquez pour révéler</div>
+        <div class="srs-word-fr" id="srs-word-fr" style="display:none">${word.fr}</div>
+      </div>
+      <div class="srs-actions" id="srs-actions" style="display:none">
+        <button class="srs-btn srs-btn-wrong" onclick="answerSRS(false)">❌ Je ne savais pas</button>
+        <button class="srs-btn srs-btn-correct" onclick="answerSRS(true)">✅ Je savais !</button>
+      </div>
+    </div>
+  `;
+}
+
+export function revealSRSCard() {
+  if (_srsFlipped) return;
+  _srsFlipped = true;
+  document.getElementById('srs-reveal-hint').style.display = 'none';
+  document.getElementById('srs-word-fr').style.display = 'block';
+  const actions = document.getElementById('srs-actions');
+  if (actions) actions.style.display = 'flex';
+}
+
+export function answerSRS(correct) {
+  const key = _srsKeys[_srsIndex];
+  const entry = STATE.learnedWords[key];
+  if (entry) {
+    STATE.learnedWords[key] = updateAfterReview(entry, correct);
+    if (correct) {
+      addXP(5);
+      STATE.srsCount = (STATE.srsCount || 0) + 1;
+    }
+    saveState();
+  }
+  _srsIndex++;
+  _renderSRSModal();
+}
+
+// ── Daily goal adjustment ────────────────────────────────────────────────────
+
+export function adjustDailyGoal(xp) {
+  STATE.dailyGoalXP = xp;
+  saveState();
+  renderProgress();
 }
 
 export function filterBadges(filter) {
